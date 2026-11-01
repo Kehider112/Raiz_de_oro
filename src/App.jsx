@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { supabase } from './supabase'
 import Login from './pages/login'
-import Panel from './pages/panel'
+import RestablecerClave from './pages/restablecer-clave'
+
+const Panel = lazy(() => import('./pages/panel'))
 
 export default function App() {
   // undefined = todavía comprobando si hay sesión; null = sin sesión
@@ -40,32 +42,45 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          path="/login"
-          element={sesion
-            ? <Navigate to="/" />
-            : <Login
-                tema={tema}
-                onCambiarTema={cambiarTema}
-                estilo={estilo}
-                onCambiarEstilo={setEstilo}
-              />}
-        />
-        <Route
-          path="/"
-          element={sesion
-            ? <Panel
-                sesion={sesion}
+      <Suspense fallback={<p className="centrado">Cargando...</p>}>
+        <Routes>
+          <Route
+            path="/restablecer-clave"
+            element={
+              <RestablecerClave
                 tema={tema}
                 onCambiarTema={cambiarTema}
                 estilo={estilo}
                 onCambiarEstilo={setEstilo}
               />
-            : <Navigate to="/login" />}
-        />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+            }
+          />
+          <Route
+            path="/login"
+            element={sesion
+              ? <Navigate to="/" />
+              : <Login
+                  tema={tema}
+                  onCambiarTema={cambiarTema}
+                  estilo={estilo}
+                  onCambiarEstilo={setEstilo}
+                />}
+          />
+          <Route
+            path="/"
+            element={sesion
+              ? <Panel
+                  sesion={sesion}
+                  tema={tema}
+                  onCambiarTema={cambiarTema}
+                  estilo={estilo}
+                  onCambiarEstilo={setEstilo}
+                />
+              : <Navigate to="/login" />}
+          />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   )
 }

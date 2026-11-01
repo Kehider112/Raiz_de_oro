@@ -1,23 +1,113 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { supabase } from '../supabase'
 import SelectorEstilo from '../components/selector-estilo'
 import Logo from '../components/logo'
+import { traducirErrorAuth } from '../utils/mensajes-auth'
+
+const formatearTiempo = (milisegundos) => {
+  const segundos = Math.ceil(milisegundos / 1000)
+  return `${Math.floor(segundos / 60)}:${String(segundos % 60).padStart(2, '0')}`
+}
+
+const formatearMinutos = (milisegundos) => {
+  const totalMinutos = Math.ceil(milisegundos / 60000)
+  const horas = Math.floor(totalMinutos / 60)
+  const minutos = totalMinutos % 60
+  const partes = []
+  if (horas > 0) partes.push(`${horas} ${horas === 1 ? 'hora' : 'horas'}`)
+  if (minutos > 0) partes.push(`${minutos} ${minutos === 1 ? 'minuto' : 'minutos'}`)
+  return partes.join(' y ') || 'menos de 1 minuto'
+}
+
+const tiempoRestante = (fecha) => Math.max(0, new Date(fecha || 0).getTime() - Date.now())
 
 export default function Login({ tema, onCambiarTema, estilo, onCambiarEstilo }) {
   const [modoRegistro, setModoRegistro] = useState(false)
+  const [modoRecuperacion, setModoRecuperacion] = useState(false)
   const [nombre, setNombre] = useState('')
   const [correo, setCorreo] = useState('')
   const [clave, setClave] = useState('')
   const [error, setError] = useState('')
   const [mensaje, setMensaje] = useState('')
   const [cargando, setCargando] = useState(false)
+  const [tiempoRecuperacion, setTiempoRecuperacion] = useState(0)
+  const [tiempoLogin, setTiempoLogin] = useState(0)
   const [mostrarClave, setMostrarClave] = useState(false)
+
+  useEffect(() => {
+    if (!modoRecuperacion || tiempoRecuperacion <= 0) return undefined
+    const intervalo = window.setInterval(() => {
+      setTiempoRecuperacion((actual) => Math.max(0, actual - 1000))
+    }, 1000)
+    return () => window.clearInterval(intervalo)
+  }, [modoRecuperacion, tiempoRecuperacion])
+
+  useEffect(() => {
+    if (modoRecuperacion || tiempoLogin <= 0) return undefined
+    const intervalo = window.setInterval(() => {
+      setTiempoLogin((actual) => Math.max(0, actual - 1000))
+    }, 1000)
+    return () => window.clearInterval(intervalo)
+  }, [modoRecuperacion, tiempoLogin])
+
+  async function solicitarRestablecimiento(e) {
+    e.preventDefault()
+    setError('')
+    setMensaje('')
+
+    setCargando(true)
+    const { data: limite, error: errorLimite } = await supabase.rpc('solicitar_recuperacion', {
+      p_correo: correo,
+    })
+
+    if (errorLimite) {
+      setError(`No se pudo solicitar la recuperación: ${traducirErrorAuth(errorLimite)}`)
+      setCargando(false)
+      return
+    }
+
+    const restante = tiempoRestante(limite.bloqueado_hasta)
+    setTiempoRecuperacion(restante)
+    if (!limite.permitido) {
+      setError(`Demasiados intentos. Espera ${formatearTiempo(restante)}.`)
+    } else {
+      const { error } = await supabase.auth.resetPasswordForEmail(correo, {
+        redirectTo: `${window.location.origin}/restablecer-clave`,
+      })
+      if (error) {
+        setError(`No se pudo enviar el correo de recuperación: ${traducirErrorAuth(error)}`)
+      } else {
+        setMensaje('Revisa tu correo. Te enviamos un enlace para crear una nueva contraseña.')
+      }
+    }
+    setCargando(false)
+  }
 
   async function enviar(e) {
     e.preventDefault()
     setError('')
     setMensaje('')
     setCargando(true)
+
+    if (!modoRegistro) {
+      const { data: limite, error: errorLimite } = await supabase.rpc('controlar_intento_login', {
+        p_correo: correo,
+        p_resultado: 'consultar',
+      })
+      if (errorLimite) {
+        setError(`No se pudo validar el acceso: ${traducirErrorAuth(errorLimite)}`)
+        setCargando(false)
+        return
+      }
+
+      const restante = tiempoRestante(limite.bloqueado_hasta)
+      setTiempoLogin(restante)
+      if (restante > 0) {
+        setError('')
+        setCargando(false)
+        return
+      }
+    }
 
     const { error } = modoRegistro
       ? await supabase.auth.signUp({
@@ -28,9 +118,30 @@ export default function Login({ tema, onCambiarTema, estilo, onCambiarEstilo }) 
       : await supabase.auth.signInWithPassword({ email: correo, password: clave })
 
     if (error) {
-      setError(error.message)
+      setError(traducirErrorAuth(error))
+      if (!modoRegistro) {
+        const { data: limite, error: errorLimite } = await supabase.rpc('controlar_intento_login', {
+          p_correo: correo,
+          p_resultado: 'fallo',
+        })
+        if (errorLimite) {
+          setError(`No se pudo registrar el intento: ${traducirErrorAuth(errorLimite)}`)
+        } else {
+          const restante = tiempoRestante(limite.bloqueado_hasta)
+          setTiempoLogin(restante)
+          if (restante > 0) {
+            setError('')
+          }
+        }
+      }
     } else if (modoRegistro) {
       setMensaje('Tu cuenta fue creada. Si te pedimos confirmar el correo, revisa tu bandeja de entrada.')
+    } else {
+      const { error: errorLimite } = await supabase.rpc('controlar_intento_login', {
+        p_correo: correo,
+        p_resultado: 'exito',
+      })
+      if (errorLimite) console.error('No se pudo reiniciar el límite de inicio de sesión.', errorLimite)
     }
     setCargando(false)
   }
@@ -78,15 +189,17 @@ export default function Login({ tema, onCambiarTema, estilo, onCambiarEstilo }) 
             <Logo />
           </div>
           <span className="sobrelinea">{modoRegistro ? 'EMPIEZA HOY' : 'QUÉ BUENO VERTE'}</span>
-          <h2>{modoRegistro ? 'Crea tu cuenta' : 'Bienvenido de nuevo'}</h2>
+          <h2>{modoRecuperacion ? 'Restablece tu contraseña' : modoRegistro ? 'Crea tu cuenta' : 'Bienvenido de nuevo'}</h2>
           <p className="acceso-descripcion">
-            {modoRegistro
+            {modoRecuperacion
+              ? 'Escribe tu correo y te enviaremos un enlace para recuperarla.'
+              : modoRegistro
               ? 'Regístrate para empezar a organizar tus finanzas.'
               : 'Ingresa tus datos para continuar con tus finanzas.'}
           </p>
 
-          <form onSubmit={enviar} className="form-acceso">
-            {modoRegistro && (
+          <form onSubmit={modoRecuperacion ? solicitarRestablecimiento : enviar} className="form-acceso">
+            {modoRegistro && !modoRecuperacion && (
               <label>
                 Nombre
                 <input
@@ -110,7 +223,7 @@ export default function Login({ tema, onCambiarTema, estilo, onCambiarEstilo }) 
                 required
               />
             </label>
-            <label>
+            {!modoRecuperacion && <label>
               Contraseña
               <span className="campo-clave">
                 <input
@@ -132,14 +245,29 @@ export default function Login({ tema, onCambiarTema, estilo, onCambiarEstilo }) 
                   {mostrarClave ? 'Ocultar' : 'Mostrar'}
                 </button>
               </span>
-            </label>
+            </label>}
 
             {error && <p className="error mensaje-acceso" role="alert">{error}</p>}
             {mensaje && <p className="mensaje-exito" role="status">{mensaje}</p>}
+            {modoRecuperacion && tiempoRecuperacion > 0 && (
+              <p className="mensaje-espera" role="status">
+                Puedes volver a solicitar un enlace en {formatearTiempo(tiempoRecuperacion)}.
+              </p>
+            )}
+            {!modoRecuperacion && tiempoLogin > 0 && (
+              <p className="mensaje-bloqueo-login" role="alert">
+                Inicio de sesión bloqueado temporalmente. Faltan {formatearMinutos(tiempoLogin)} para volver a intentarlo.
+              </p>
+            )}
 
-            <button className="boton-primario boton-acceso" disabled={cargando}>
+            <button
+              className="boton-primario boton-acceso"
+              disabled={cargando || (modoRecuperacion ? tiempoRecuperacion > 0 : tiempoLogin > 0)}
+            >
               {cargando
                 ? 'Un momento...'
+                : modoRecuperacion
+                  ? 'Enviar enlace'
                 : modoRegistro
                   ? 'Crear mi cuenta'
                   : 'Iniciar sesión'}
@@ -147,17 +275,39 @@ export default function Login({ tema, onCambiarTema, estilo, onCambiarEstilo }) 
             </button>
           </form>
 
-          <div className="cambio-modo">
-            <span>{modoRegistro ? '¿Ya tienes una cuenta?' : '¿Primera vez por aquí?'}</span>
+          {!modoRegistro && !modoRecuperacion && (
             <button
-              className="enlace"
+              className="enlace enlace-recuperacion"
+              type="button"
               onClick={() => {
-                setModoRegistro(!modoRegistro)
+                setModoRecuperacion(true)
                 setError('')
                 setMensaje('')
               }}
             >
-              {modoRegistro ? 'Inicia sesión' : 'Crea una cuenta'}
+              ¿Olvidaste tu contraseña?
+            </button>
+          )}
+
+          <div className="cambio-modo">
+            <span>
+              {modoRecuperacion
+                ? '¿Recordaste tu contraseña?'
+                : modoRegistro
+                  ? '¿Ya tienes una cuenta?'
+                  : '¿Primera vez por aquí?'}
+            </span>
+            <button
+              type="button"
+              className="enlace"
+              onClick={() => {
+                setModoRecuperacion(false)
+                setModoRegistro(modoRecuperacion ? false : !modoRegistro)
+                setError('')
+                setMensaje('')
+              }}
+            >
+              {modoRecuperacion ? 'Inicia sesión' : modoRegistro ? 'Inicia sesión' : 'Crea una cuenta'}
             </button>
           </div>
           <p className="acceso-seguro"><span aria-hidden="true">◇</span> Tus datos se mantienen privados y seguros</p>

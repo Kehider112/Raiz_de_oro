@@ -30,6 +30,193 @@ create policy presupuestos_propios on presupuestos for all
 
 notify pgrst, 'reload schema';
 
+-- Límite del servidor para contraseñas incorrectas en el inicio de sesión.
+create table if not exists limites_login (
+  correo_normalizado text primary key,
+  dia date not null default current_date,
+  intentos integer not null default 0 check (intentos >= 0),
+  bloqueos integer not null default 0 check (bloqueos >= 0),
+  bloqueado_hasta timestamptz
+);
+
+alter table limites_login enable row level security;
+
+create or replace function controlar_intento_login(p_correo text, p_resultado text)
+returns jsonb
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_correo text := lower(trim(p_correo));
+  v_dia date;
+  v_intentos integer;
+  v_bloqueos integer;
+  v_bloqueado_hasta timestamptz;
+  v_espera interval;
+begin
+  if v_correo is null or v_correo = '' then
+    raise exception 'El correo es obligatorio';
+  end if;
+  if p_resultado not in ('consultar', 'fallo', 'exito') then
+    raise exception 'Resultado de intento no válido';
+  end if;
+
+  perform pg_advisory_xact_lock(hashtext('login:' || v_correo));
+  insert into limites_login (correo_normalizado)
+  values (v_correo)
+  on conflict (correo_normalizado) do nothing;
+
+  select dia, intentos, bloqueos, bloqueado_hasta
+    into v_dia, v_intentos, v_bloqueos, v_bloqueado_hasta
+  from limites_login
+  where correo_normalizado = v_correo
+  for update;
+
+  if v_dia <> current_date then
+    v_dia := current_date;
+    v_intentos := 0;
+    v_bloqueos := 0;
+    v_bloqueado_hasta := null;
+  end if;
+
+  if v_bloqueado_hasta is not null and v_bloqueado_hasta > now() then
+    update limites_login
+    set dia = v_dia, intentos = v_intentos, bloqueos = v_bloqueos
+    where correo_normalizado = v_correo;
+    return jsonb_build_object('permitido', false, 'bloqueado_hasta', v_bloqueado_hasta);
+  end if;
+
+  if p_resultado = 'exito' then
+    v_intentos := 0;
+    v_bloqueos := 0;
+    v_bloqueado_hasta := null;
+  elsif p_resultado = 'fallo' then
+    if v_bloqueado_hasta is not null then
+      v_intentos := 0;
+      v_bloqueado_hasta := null;
+    end if;
+    v_intentos := v_intentos + 1;
+    if v_intentos >= 5 then
+      v_espera := make_interval(mins => (5 * power(2, v_bloqueos))::integer);
+      v_bloqueado_hasta := now() + v_espera;
+      v_bloqueos := v_bloqueos + 1;
+    end if;
+  end if;
+
+  update limites_login
+  set dia = v_dia,
+      intentos = v_intentos,
+      bloqueos = v_bloqueos,
+      bloqueado_hasta = v_bloqueado_hasta
+  where correo_normalizado = v_correo;
+
+  return jsonb_build_object(
+    'permitido', v_bloqueado_hasta is null,
+    'bloqueado_hasta', v_bloqueado_hasta,
+    'intentos', v_intentos,
+    'bloqueos', v_bloqueos
+  );
+end;
+$$;
+
+revoke execute on function controlar_intento_login(text, text) from public;
+grant execute on function controlar_intento_login(text, text) to anon, authenticated;
+
+notify pgrst, 'reload schema';
+
+-- Límite del servidor para solicitudes de recuperación de contraseña.
+create table if not exists limites_recuperacion (
+  correo_normalizado text primary key,
+  dia date not null default current_date,
+  intentos integer not null default 0 check (intentos >= 0),
+  bloqueos integer not null default 0 check (bloqueos >= 0),
+  bloqueado_hasta timestamptz
+);
+
+alter table limites_recuperacion enable row level security;
+
+create or replace function solicitar_recuperacion(p_correo text)
+returns jsonb
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_correo text := lower(trim(p_correo));
+  v_dia date := current_date;
+  v_intentos integer;
+  v_bloqueos integer;
+  v_bloqueado_hasta timestamptz;
+  v_espera interval;
+begin
+  if v_correo is null or v_correo = '' then
+    raise exception 'El correo es obligatorio';
+  end if;
+
+  perform pg_advisory_xact_lock(hashtext(v_correo));
+
+  insert into limites_recuperacion (correo_normalizado, dia)
+  values (v_correo, v_dia)
+  on conflict (correo_normalizado) do nothing;
+
+  select intentos, bloqueos, bloqueado_hasta
+    into v_intentos, v_bloqueos, v_bloqueado_hasta
+  from limites_recuperacion
+  where correo_normalizado = v_correo
+  for update;
+
+  if (select dia from limites_recuperacion where correo_normalizado = v_correo) <> v_dia then
+    v_intentos := 0;
+    v_bloqueos := 0;
+    v_bloqueado_hasta := null;
+  end if;
+
+  if v_bloqueado_hasta is not null and v_bloqueado_hasta > now() then
+    update limites_recuperacion
+    set dia = v_dia, intentos = v_intentos, bloqueos = v_bloqueos
+    where correo_normalizado = v_correo;
+    return jsonb_build_object(
+      'permitido', false,
+      'bloqueado_hasta', v_bloqueado_hasta,
+      'intentos', v_intentos,
+      'bloqueos', v_bloqueos
+    );
+  end if;
+
+  if v_bloqueado_hasta is not null then
+    v_intentos := 0;
+    v_bloqueado_hasta := null;
+  end if;
+
+  v_intentos := v_intentos + 1;
+  if v_intentos >= 5 then
+    v_espera := make_interval(mins => (5 * power(2, v_bloqueos))::integer);
+    v_bloqueado_hasta := now() + v_espera;
+    v_bloqueos := v_bloqueos + 1;
+  end if;
+
+  update limites_recuperacion
+  set dia = v_dia,
+      intentos = v_intentos,
+      bloqueos = v_bloqueos,
+      bloqueado_hasta = v_bloqueado_hasta
+  where correo_normalizado = v_correo;
+
+  return jsonb_build_object(
+    'permitido', true,
+    'bloqueado_hasta', v_bloqueado_hasta,
+    'intentos', v_intentos,
+    'bloqueos', v_bloqueos
+  );
+end;
+$$;
+
+revoke execute on function solicitar_recuperacion(text) from public;
+grant execute on function solicitar_recuperacion(text) to anon, authenticated;
+
+notify pgrst, 'reload schema';
+
 -- Al completar una meta, devuelve todo el ahorro a la bolsa y elimina la meta.
 -- Conserva los movimientos como historial, desvinculándolos antes de borrar la meta.
 drop function if exists aportar_ahorro(uuid, numeric, date);

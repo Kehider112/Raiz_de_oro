@@ -338,9 +338,13 @@ td:first-child { min-width: 180px; }
 .boton-acceso span { float: right; font-size: 1.05rem; }
 .mensaje-acceso { margin: 0; font-size: .8rem; line-height: 1.5; }
 .mensaje-exito { margin: 0; padding: 11px 12px; border: 1px solid var(--verde-borde); border-radius: 9px; color: var(--verde); background: var(--verde-claro); font-size: .79rem; line-height: 1.5; }
+.mensaje-espera { margin: 0; padding: 11px 12px; border: 1px solid var(--oro-borde); border-radius: 9px; color: #805c16; background: var(--oro-claro); font-size: .79rem; line-height: 1.5; }
+.mensaje-bloqueo-login { margin: 0; padding: 11px 12px; border: 1px solid #f5d0d2; border-radius: 9px; color: #b9414a; background: #fff5f5; font-size: .79rem; line-height: 1.5; }
 .cambio-modo { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-top: 23px; color: var(--suave); font-size: .8rem; }
 .cambio-modo .enlace { padding: 0; border: 0; color: var(--oro); background: transparent; font-size: inherit; font-weight: 700; }
 .cambio-modo .enlace:hover { color: #805c16; text-decoration: underline; }
+.enlace-recuperacion { display: block; margin: 18px auto 0; padding: 0; border: 0; color: var(--oro); background: transparent; font-size: .8rem; font-weight: 700; }
+.enlace-recuperacion:hover { color: #805c16; text-decoration: underline; }
 .acceso-seguro { margin: 36px 0 0; color: #9aa2b3; font-size: .72rem; text-align: center; }
 .acceso-seguro span { margin-right: 4px; color: var(--verde); }
 
