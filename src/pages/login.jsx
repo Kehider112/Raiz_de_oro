@@ -11,7 +11,6 @@ export default function Login({ tema, onCambiarTema, estilo, onCambiarEstilo }) 
   const [error, setError] = useState('')
   const [mensaje, setMensaje] = useState('')
   const [cargando, setCargando] = useState(false)
-  const [cargandoGoogle, setCargandoGoogle] = useState(false)
   const [mostrarClave, setMostrarClave] = useState(false)
 
   async function enviar(e) {
@@ -34,22 +33,6 @@ export default function Login({ tema, onCambiarTema, estilo, onCambiarEstilo }) 
       setMensaje('Tu cuenta fue creada. Si te pedimos confirmar el correo, revisa tu bandeja de entrada.')
     }
     setCargando(false)
-  }
-
-  async function iniciarConGoogle() {
-    setError('')
-    setMensaje('')
-    setCargandoGoogle(true)
-
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: window.location.origin },
-    })
-
-    if (error) {
-      setError(error.message)
-      setCargandoGoogle(false)
-    }
   }
 
   return (
@@ -163,19 +146,6 @@ export default function Login({ tema, onCambiarTema, estilo, onCambiarEstilo }) 
               {!cargando && <span aria-hidden="true">→</span>}
             </button>
           </form>
-
-          <div className="separador-acceso" aria-hidden="true">
-            <span>o continúa con</span>
-          </div>
-          <button
-            className="boton-google"
-            type="button"
-            onClick={iniciarConGoogle}
-            disabled={cargando || cargandoGoogle}
-          >
-            <img className="google-icon" src="/google-logo.webp" alt="" aria-hidden="true" />
-            {cargandoGoogle ? 'Conectando...' : 'Continuar con Google'}
-          </button>
 
           <div className="cambio-modo">
             <span>{modoRegistro ? '¿Ya tienes una cuenta?' : '¿Primera vez por aquí?'}</span>
