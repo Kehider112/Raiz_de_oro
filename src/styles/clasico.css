@@ -1,0 +1,842 @@
+/* Classic: original Raiz de Oro presentation without material effects. */
+:root[data-estilo='clasico'] {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+:root[data-estilo='clasico'] body {
+  background: var(--fondo);
+}
+
+:root[data-estilo='clasico'] body::before,
+:root[data-estilo='clasico'] body::after {
+  display: none;
+}
+
+:root[data-estilo='clasico'] #root {
+  padding: 28px 24px 48px;
+}
+
+:root[data-estilo='clasico'] .dashboard {
+  width: min(100%, 1080px);
+}
+
+:root[data-estilo='clasico'] .app-header {
+  position: relative;
+  z-index: 20;
+  margin-bottom: 48px;
+  padding: 0;
+}
+
+:root[data-estilo='clasico'] .marca-contenido {
+  position: relative;
+  display: inline-flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+
+:root[data-estilo='clasico'] .marca-logo {
+  width: 66px;
+  height: 50px;
+  color: #193b24;
+}
+
+:root[data-estilo='clasico'] .marca-logo svg {
+  display: block;
+}
+
+:root[data-estilo='clasico'] .marca-nombre {
+  display: inline-flex;
+  gap: 8px;
+  color: #193b24;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: .86rem;
+  font-weight: 700;
+  letter-spacing: .11em;
+  line-height: 1;
+}
+
+:root[data-estilo='clasico'] .marca-nombre strong {
+  color: #bd8b2c;
+  font-weight: 700;
+}
+
+:root[data-estilo='clasico'] .marca-ornamento {
+  position: absolute;
+  right: 0;
+  bottom: -8px;
+  display: flex;
+  width: calc(100% - 74px);
+  align-items: center;
+  gap: 7px;
+  color: #bd8b2c;
+}
+
+:root[data-estilo='clasico'] .marca-ornamento span {
+  height: 2px;
+  flex: 1;
+  background: #bd8b2c;
+}
+
+:root[data-estilo='clasico'] .marca-ornamento b {
+  font-size: .95rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .marca-logo {
+  color: #a9c99d;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .marca-nombre {
+  color: #dfead9;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .marca-nombre strong {
+  color: #d3b86a;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .marca-ornamento span {
+  background: #d3b86a;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .marca-ornamento {
+  color: #d3b86a;
+}
+
+:root[data-estilo='clasico'] .dashboard {
+  animation: none;
+}
+
+:root[data-estilo='clasico'] .acceso-controles {
+  z-index: 4;
+  top: 18px;
+  right: 76px;
+  left: auto;
+  width: 180px;
+}
+
+:root[data-estilo='clasico'] .acceso-controles .selector-estilo {
+  width: 100%;
+}
+
+:root[data-estilo='clasico'] .acceso-controles .selector-estilo-etiqueta {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+:root[data-estilo='clasico'] .acceso-controles .selector-personalizado-boton,
+:root[data-estilo='clasico'] .acceso-tema {
+  height: 38px;
+  min-height: 38px;
+}
+
+:root[data-estilo='clasico'] .acceso-controles .selector-personalizado-boton {
+  width: 100%;
+}
+
+:root[data-estilo='clasico'] .acceso-tema {
+  width: 38px;
+}
+
+:root[data-estilo='clasico'] .marca-acceso .marca-logo {
+  width: 78px;
+  height: 66px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  filter: none;
+}
+
+:root[data-estilo='clasico'] .marca-acceso .marca-logo svg {
+  width: 100%;
+  height: 100%;
+  transform: none;
+}
+
+:root[data-estilo='clasico'] .marca-acceso .marca-contenido {
+  gap: 18px;
+}
+
+:root[data-estilo='clasico'] .marca-acceso .marca-nombre {
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+
+:root[data-estilo='clasico'] .marca-acceso .marca-forma-principal,
+:root[data-estilo='clasico'] .marca-acceso .marca-hoja-superior,
+:root[data-estilo='clasico'] .marca-acceso .marca-hoja-inferior,
+:root[data-estilo='clasico'] .marca-acceso .marca-tallo {
+  fill: #f1f7e9;
+}
+
+:root[data-estilo='clasico'] .marca-acceso .marca-destello,
+:root[data-estilo='clasico'] .marca-acceso .marca-destello-secundario {
+  fill: #f3d982;
+}
+
+:root[data-estilo='clasico'] .marca-acceso .marca-nombre {
+  color: #fff;
+  text-shadow: 1px 2px 0 rgb(20 49 31 / 45%);
+}
+
+:root[data-estilo='clasico'] .marca-acceso .marca-nombre strong {
+  color: #f3d982;
+}
+
+:root[data-estilo='clasico'] .marca-acceso .marca-ornamento {
+  right: 0;
+  bottom: -8px;
+  left: 96px;
+  width: auto;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .pantalla-acceso {
+  border-color: #3c493f;
+  background: #171d19;
+  box-shadow: 0 24px 80px rgb(0 0 0 / 42%);
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .acceso-presentacion {
+  background: linear-gradient(145deg, #162d20 0%, #203c2a 58%, #34432d 100%);
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .acceso-formulario {
+  background: #171d19;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .acceso-formulario h2,
+:root[data-tema='oscuro'][data-estilo='clasico'] .form-acceso label {
+  color: #edf2e9;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .acceso-descripcion,
+:root[data-tema='oscuro'][data-estilo='clasico'] .cambio-modo {
+  color: #aab6ab;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .form-acceso input {
+  border-color: #4a584d;
+  color: #edf2e9;
+  background: #222a24;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .form-acceso input:focus {
+  border-color: #b8c995;
+  background: #29332b;
+  box-shadow: 0 0 0 3px rgb(184 201 149 / 16%);
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .form-acceso input::placeholder {
+  color: #849187;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .ver-clave {
+  color: #e1c66c;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .ver-clave:hover,
+:root[data-tema='oscuro'][data-estilo='clasico'] .cambio-modo .enlace {
+  color: #f0d98f;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .acceso-seguro {
+  color: #89968b;
+}
+
+:root[data-estilo='clasico'] .app-header,
+:root[data-estilo='clasico'] .bienvenida,
+:root[data-estilo='clasico'] .seccion,
+:root[data-estilo='clasico'] .resumen-card {
+  animation: none;
+}
+
+:root[data-estilo='clasico'] .usuario {
+  position: relative;
+  z-index: 21;
+  display: flex;
+  width: auto;
+  min-width: 0;
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 5px;
+  padding: 6px;
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  background: var(--tarjeta);
+  box-shadow: 0 8px 20px rgb(77 59 20 / 6%);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+:root[data-estilo='clasico'] .usuario-identidad {
+  justify-content: flex-start;
+}
+
+:root[data-estilo='clasico'] .usuario-cabecera {
+  width: auto;
+}
+
+:root[data-estilo='clasico'] .usuario-avatar {
+  border-color: var(--verde-borde);
+  background: var(--verde-claro);
+}
+
+:root[data-estilo='clasico'] .usuario-avatar:hover {
+  border-color: var(--oro);
+  box-shadow: 0 0 0 3px var(--oro-claro);
+}
+
+:root[data-estilo='clasico'] .menu-perfil {
+  border-radius: 12px;
+  box-shadow: 0 14px 30px rgb(77 59 20 / 14%);
+}
+
+:root[data-estilo='clasico'] .boton-configuracion {
+  color: var(--verde);
+}
+
+:root[data-estilo='clasico'] .menu-configuracion {
+  z-index: 30;
+  min-width: 190px;
+  padding: 8px;
+  z-index: 30;
+  border-radius: 12px;
+}
+
+:root[data-estilo='clasico'] .usuario-email {
+  width: 100%;
+  max-width: none;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--borde);
+  color: var(--suave);
+  font-size: .78rem;
+  text-align: right;
+}
+
+:root[data-estilo='clasico'] .usuario-controles {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  width: 100%;
+}
+
+:root[data-estilo='clasico'] .selector-estilo {
+  min-width: 145px;
+}
+
+:root[data-estilo='clasico'] .organismo-vivo {
+  display: none;
+}
+
+:root[data-estilo='clasico'] .navegacion-panel {
+  position: relative;
+  min-height: 0;
+  gap: 5px;
+  padding: 6px;
+  border: 1px solid var(--borde);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: var(--sombra);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+:root[data-estilo='clasico'] .navegacion-indicador {
+  position: absolute !important;
+  z-index: 0;
+  left: 0;
+  width: 0;
+  flex: none !important;
+  pointer-events: none;
+}
+
+:root[data-estilo='clasico'] .navegacion-item {
+  position: relative;
+  z-index: 1;
+  min-height: 40px;
+  padding: 0 15px;
+  border-radius: 9px;
+  color: #727d92;
+}
+
+:root[data-estilo='clasico'] .navegacion-item:hover {
+  color: #805c16;
+  background: var(--oro-claro);
+}
+
+:root[data-estilo='clasico'] .navegacion-item.navegacion-activa {
+  color: #fff;
+  background: transparent;
+  box-shadow: none;
+}
+
+:root[data-estilo='clasico'] .navegacion-item.navegacion-activa::before,
+:root[data-estilo='clasico'] .navegacion-item.navegacion-activa::after {
+  display: none;
+}
+
+:root[data-estilo='clasico'] .navegacion-item.navegacion-activa > span {
+  position: relative;
+  z-index: 1;
+}
+
+:root[data-estilo='clasico'] .navegacion-indicador {
+  top: 6px;
+  height: 40px;
+  border: 0;
+  border-radius: 9px;
+  background: linear-gradient(120deg, #315b43, #244734);
+  box-shadow: 0 4px 10px rgb(36 71 52 / 20%);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: none;
+}
+
+:root[data-estilo='clasico'] .navegacion-indicador::after {
+  display: none;
+}
+
+@keyframes clasico-aparecer {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes clasico-logo-entrada {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes clasico-nombre-entrada {
+  from { opacity: 0; transform: translateX(8px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes clasico-menu-entrada {
+  from { opacity: 0; transform: translateY(-7px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes clasico-menu-salida {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-5px) scale(.98); }
+}
+
+@keyframes clasico-selector-entrada {
+  from { opacity: 0; transform: translateY(-6px) scale(.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes clasico-opcion-entrada {
+  from { opacity: 0; transform: translateX(-5px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes clasico-calendario-siguiente {
+  from { opacity: 0; transform: translateX(18px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes clasico-calendario-anterior {
+  from { opacity: 0; transform: translateX(-18px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+:root[data-estilo='clasico'] .app-header {
+  animation: clasico-aparecer .5s ease both;
+}
+
+:root[data-estilo='clasico'] .marca-logo,
+:root[data-estilo='clasico'] .marca-nombre {
+  animation: clasico-logo-entrada .45s ease both;
+}
+
+:root[data-estilo='clasico'] .usuario {
+  animation: clasico-aparecer .5s .08s ease both;
+}
+
+:root[data-estilo='clasico'] .usuario-email {
+  animation: clasico-nombre-entrada .45s .2s ease both;
+}
+
+:root[data-estilo='clasico'] .menu-configuracion,
+:root[data-estilo='clasico'] .menu-perfil {
+  transform-origin: top right;
+  animation: clasico-menu-entrada .2s ease both;
+}
+
+:root[data-estilo='clasico'] .menu-configuracion.menu-cerrando,
+:root[data-estilo='clasico'] .menu-perfil.menu-cerrando {
+  animation: clasico-menu-salida .18s ease both;
+  pointer-events: none;
+}
+
+:root[data-estilo='clasico'] .bienvenida,
+:root[data-estilo='clasico'] .navegacion-panel,
+:root[data-estilo='clasico'] .seccion,
+:root[data-estilo='clasico'] .resumen-card {
+  animation: clasico-aparecer .5s .12s ease both;
+}
+
+:root[data-estilo='clasico'] .seccion:nth-of-type(2),
+:root[data-estilo='clasico'] .resumen-card:nth-child(2) {
+  animation-delay: .18s;
+}
+
+:root[data-estilo='clasico'] .seccion:nth-of-type(3),
+:root[data-estilo='clasico'] .resumen-card:nth-child(3) {
+  animation-delay: .24s;
+}
+
+:root[data-estilo='clasico'] .seccion,
+:root[data-estilo='clasico'] .resumen-card,
+:root[data-estilo='clasico'] .meta,
+:root[data-estilo='clasico'] .prestamo,
+:root[data-estilo='clasico'] .presupuesto-item,
+:root[data-estilo='clasico'] .recurrente-item,
+:root[data-estilo='clasico'] .boton-primario,
+:root[data-estilo='clasico'] .boton-secundario,
+:root[data-estilo='clasico'] .boton-tema,
+:root[data-estilo='clasico'] .boton-configuracion,
+:root[data-estilo='clasico'] .usuario-avatar {
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+}
+
+:root[data-estilo='clasico'] .boton-primario:hover:not(:disabled),
+:root[data-estilo='clasico'] .boton-secundario:hover:not(:disabled),
+:root[data-estilo='clasico'] .boton-tema:hover,
+:root[data-estilo='clasico'] .boton-configuracion:hover,
+:root[data-estilo='clasico'] .usuario-avatar:hover {
+  transform: translateY(-2px);
+}
+
+:root[data-estilo='clasico'] .boton-configuracion > span {
+  display: inline-block;
+  transition: transform .25s ease;
+}
+
+:root[data-estilo='clasico'] .boton-configuracion:hover > span,
+:root[data-estilo='clasico'] .boton-configuracion[aria-expanded='true'] > span {
+  transform: rotate(45deg);
+}
+
+:root[data-estilo='clasico'] .selector-personalizado-boton,
+:root[data-estilo='clasico'] .acceso-tema,
+:root[data-estilo='clasico'] .selector-personalizado-opcion {
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+:root[data-estilo='clasico'] .selector-personalizado-boton:hover,
+:root[data-estilo='clasico'] .selector-personalizado-boton[aria-expanded='true'] {
+  transform: translateY(-1px);
+  border-color: var(--oro);
+  box-shadow: 0 4px 10px rgb(77 59 20 / 12%);
+}
+
+:root[data-estilo='clasico'] .acceso-tema:hover {
+  transform: translateY(-1px);
+  border-color: var(--oro);
+  box-shadow: 0 4px 10px rgb(77 59 20 / 12%);
+}
+
+:root[data-estilo='clasico'] .selector-personalizado-menu {
+  transform-origin: top center;
+  animation: clasico-selector-entrada .2s ease both;
+}
+
+:root[data-estilo='clasico'] .selector-personalizado-opcion {
+  animation: clasico-opcion-entrada .18s ease both;
+}
+
+:root[data-estilo='clasico'] .selector-personalizado-opcion:nth-child(2) {
+  animation-delay: .025s;
+}
+
+:root[data-estilo='clasico'] .selector-personalizado-opcion:nth-child(3) {
+  animation-delay: .05s;
+}
+
+:root[data-estilo='clasico'] .selector-personalizado-opcion:nth-child(4) {
+  animation-delay: .075s;
+}
+
+:root[data-estilo='clasico'] .selector-personalizado-opcion:hover {
+  transform: translateX(2px);
+}
+
+:root[data-estilo='clasico'] .calendario-grid.calendario-cambio-siguiente {
+  animation: clasico-calendario-siguiente .4s ease both;
+}
+
+:root[data-estilo='clasico'] .calendario-grid.calendario-cambio-anterior {
+  animation: clasico-calendario-anterior .4s ease both;
+}
+
+:root[data-estilo='clasico'] .calendario-cabecera .boton-secundario {
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+:root[data-estilo='clasico'] .calendario-cabecera .boton-secundario:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgb(77 59 20 / 15%);
+}
+
+:root[data-estilo='clasico'] .calendario-dia {
+  transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+:root[data-estilo='clasico'] .calendario-dia:hover {
+  z-index: 1;
+  transform: translateY(-2px);
+  background: var(--oro-claro);
+  box-shadow: 0 5px 12px rgb(77 59 20 / 10%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-estilo='clasico'] .app-header,
+  :root[data-estilo='clasico'] .marca-logo,
+  :root[data-estilo='clasico'] .marca-nombre,
+  :root[data-estilo='clasico'] .usuario-email,
+  :root[data-estilo='clasico'] .usuario,
+  :root[data-estilo='clasico'] .bienvenida,
+  :root[data-estilo='clasico'] .navegacion-panel,
+  :root[data-estilo='clasico'] .seccion,
+  :root[data-estilo='clasico'] .resumen-card {
+    animation: none;
+  }
+
+  :root[data-estilo='clasico'] .seccion,
+  :root[data-estilo='clasico'] .resumen-card,
+  :root[data-estilo='clasico'] .meta,
+  :root[data-estilo='clasico'] .prestamo,
+  :root[data-estilo='clasico'] .presupuesto-item,
+  :root[data-estilo='clasico'] .recurrente-item,
+  :root[data-estilo='clasico'] .boton-primario,
+  :root[data-estilo='clasico'] .boton-secundario,
+  :root[data-estilo='clasico'] .boton-tema,
+  :root[data-estilo='clasico'] .boton-configuracion,
+  :root[data-estilo='clasico'] .usuario-avatar {
+    transition: none;
+  }
+
+  :root[data-estilo='clasico'] .menu-configuracion,
+  :root[data-estilo='clasico'] .menu-perfil,
+  :root[data-estilo='clasico'] .selector-personalizado-menu,
+  :root[data-estilo='clasico'] .selector-personalizado-opcion {
+    animation: none;
+  }
+
+  :root[data-estilo='clasico'] .calendario-grid.calendario-cambio-siguiente,
+  :root[data-estilo='clasico'] .calendario-grid.calendario-cambio-anterior,
+  :root[data-estilo='clasico'] .calendario-cabecera .boton-secundario,
+  :root[data-estilo='clasico'] .calendario-dia {
+    animation: none;
+    transition: none;
+  }
+
+  :root[data-estilo='clasico'] .boton-configuracion > span {
+    transition: none;
+  }
+}
+
+@media (max-width: 760px) {
+  :root[data-estilo='clasico'] .usuario {
+    min-width: 0;
+    width: min(100%, 360px);
+  }
+}
+
+@media (max-width: 520px) {
+  :root[data-estilo='clasico'] .usuario {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  :root[data-estilo='clasico'] .usuario-email {
+    max-width: 100%;
+    text-align: right;
+  }
+
+  :root[data-estilo='clasico'] .usuario-controles {
+    justify-content: flex-end;
+  }
+}
+
+:root[data-estilo='clasico'] .resumen-card,
+:root[data-estilo='clasico'] .seccion,
+:root[data-estilo='clasico'] .meta,
+:root[data-estilo='clasico'] .prestamo,
+:root[data-estilo='clasico'] .presupuesto-item,
+:root[data-estilo='clasico'] .recurrente-item,
+:root[data-estilo='clasico'] .estado-vacio {
+  border: 1px solid var(--borde);
+  border-radius: 18px;
+  background: var(--tarjeta);
+  box-shadow: var(--sombra);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+:root[data-estilo='clasico'] .resumen-card:hover,
+:root[data-estilo='clasico'] .seccion:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 42px rgb(77 59 20 / 10%);
+}
+
+:root[data-estilo='clasico'] .resumen-principal {
+  border: 0;
+  border-radius: 18px;
+  color: #fff;
+  background: linear-gradient(120deg, #315b43 0%, #244734 100%);
+  box-shadow: inset 0 3px 0 #d9b957;
+}
+
+:root[data-estilo='clasico'] .resumen-principal::after {
+  display: none;
+}
+
+:root[data-estilo='clasico'] .resumen-icono,
+:root[data-estilo='clasico'] .titulo-icono,
+:root[data-estilo='clasico'] .meta-icono,
+:root[data-estilo='clasico'] .vacio-icono {
+  box-shadow: none;
+}
+
+:root[data-estilo='clasico'] .formulario,
+:root[data-estilo='clasico'] .formulario-meta,
+:root[data-estilo='clasico'] .formulario-prestamo,
+:root[data-estilo='clasico'] .formulario-extra,
+:root[data-estilo='clasico'] .filtros-historial,
+:root[data-estilo='clasico'] .formulario-abono {
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+:root[data-estilo='clasico'] input,
+:root[data-estilo='clasico'] select,
+:root[data-estilo='clasico'] .selector-estilo select {
+  height: 44px;
+  border: 1px solid #e4e8f0;
+  border-radius: 10px;
+  color: var(--texto);
+  background: #fafbfe;
+  box-shadow: none;
+}
+
+:root[data-estilo='clasico'] .boton-primario,
+:root[data-estilo='clasico'] .boton-secundario,
+:root[data-estilo='clasico'] .boton-tema,
+:root[data-estilo='clasico'] .boton-salir {
+  box-shadow: none;
+}
+
+:root[data-estilo='clasico'] .boton-tema,
+:root[data-estilo='clasico'] .boton-salir,
+:root[data-estilo='clasico'] .boton-primario,
+:root[data-estilo='clasico'] .boton-secundario,
+:root[data-estilo='clasico'] .fecha-hoy {
+  border-radius: 10px;
+}
+
+:root[data-estilo='clasico'] .fecha-hoy {
+  min-height: 0;
+  padding: 10px 14px;
+  color: #68728a;
+  background: #fff;
+  box-shadow: none;
+}
+
+:root[data-estilo='clasico'] .fecha-hoy .reloj-tiempo-real {
+  color: #315b43;
+}
+
+:root[data-estilo='clasico'] .selector-estilo {
+  color: #718078;
+}
+
+:root[data-estilo='clasico'] .selector-estilo select {
+  height: 34px;
+  border-radius: 10px;
+  color: #25352e;
+  background: #fafbfe;
+  box-shadow: none;
+}
+
+:root[data-estilo='clasico'] .pantalla-acceso {
+  border: 1px solid #eee8db;
+  border-radius: 25px;
+  background: #fff;
+  box-shadow: 0 24px 80px rgb(77 59 20 / 12%);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+:root[data-estilo='clasico'] .acceso-formulario {
+  background: transparent;
+}
+
+:root[data-estilo='clasico'] .form-acceso input {
+  height: 48px;
+  border-radius: 10px;
+  background: #fbfcfe;
+}
+
+:root[data-estilo='clasico'] .boton-acceso {
+  min-height: 48px;
+  border-radius: 10px;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .navegacion-panel {
+  border-color: var(--borde);
+  background: var(--tarjeta);
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .navegacion-item {
+  color: #b7c1b6;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .resumen-card,
+:root[data-tema='oscuro'][data-estilo='clasico'] .seccion,
+:root[data-tema='oscuro'][data-estilo='clasico'] .meta,
+:root[data-tema='oscuro'][data-estilo='clasico'] .prestamo,
+:root[data-tema='oscuro'][data-estilo='clasico'] .estado-vacio {
+  border-color: var(--borde);
+  background: var(--tarjeta);
+  box-shadow: 0 14px 34px rgb(0 0 0 / 28%);
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] input,
+:root[data-tema='oscuro'][data-estilo='clasico'] select,
+:root[data-tema='oscuro'][data-estilo='clasico'] .selector-estilo select,
+:root[data-tema='oscuro'][data-estilo='clasico'] .form-acceso input {
+  color: #edf1e8;
+  border-color: #3a483e;
+  background: #18211b;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .fecha-hoy {
+  color: #d7dfd4;
+  background: #202923;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .fecha-hoy .reloj-tiempo-real {
+  color: #c6d9ac;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .selector-estilo {
+  color: #a6b1a6;
+}
+
+:root[data-tema='oscuro'][data-estilo='clasico'] .selector-estilo select {
+  color: #edf1e8;
+  background: #18211b;
+}

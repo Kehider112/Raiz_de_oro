@@ -1,0 +1,2438 @@
+:root[data-estilo='android'] {
+  --android-primary: #426b4c;
+  --android-primary-strong: #285435;
+  --android-on-primary: #f3fff2;
+  --android-secondary: #a77a1f;
+  --android-secondary-soft: #f8edc9;
+  --android-surface: #f8faf4;
+  --android-surface-container: #edf3e9;
+  --android-surface-high: #e4ede2;
+  --android-outline: #cbd8c9;
+  --android-on-surface: #1d2b20;
+  --android-on-surface-variant: #607064;
+  --android-shadow: 0 12px 30px rgb(42 72 49 / 12%);
+  font-family: "Google Sans", "Roboto", "Segoe UI", sans-serif;
+}
+
+:root[data-estilo='android'] body {
+  color: var(--android-on-surface);
+  background:
+    radial-gradient(circle at 5% 0%, rgb(213 235 207 / 78%), transparent 24rem),
+    radial-gradient(circle at 100% 14%, rgb(248 231 184 / 52%), transparent 22rem),
+    linear-gradient(145deg, #eaf3e7 0%, #f8faf4 52%, #e6efe2 100%);
+}
+
+:root[data-estilo='android'] body::before,
+:root[data-estilo='android'] body::after {
+  display: block;
+  position: fixed;
+  z-index: -1;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  content: '';
+  filter: blur(34px);
+  pointer-events: none;
+}
+
+:root[data-estilo='android'] body::before {
+  top: 8%;
+  right: -9rem;
+  background: rgb(172 215 174 / 30%);
+}
+
+:root[data-estilo='android'] body::after {
+  bottom: -9rem;
+  left: -7rem;
+  background: rgb(225 194 111 / 22%);
+}
+
+:root[data-estilo='android'] #root {
+  padding: 24px 20px 44px;
+}
+
+:root[data-estilo='android'] .dashboard {
+  width: min(100%, 1120px);
+  animation: android-enter .5s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+:root[data-estilo='android'] .app-header {
+  margin-bottom: 30px;
+}
+
+:root[data-estilo='android'] .marca {
+  gap: 12px;
+  color: var(--android-on-surface);
+  font-family: "Google Sans", "Roboto", sans-serif;
+  font-weight: 700;
+  letter-spacing: -.025em;
+}
+
+:root[data-estilo='android'] .marca-icono {
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 14px;
+  color: var(--android-on-primary);
+  background: linear-gradient(145deg, #5c9568, var(--android-primary-strong));
+  box-shadow: 0 6px 14px rgb(42 84 53 / 24%);
+}
+
+:root[data-estilo='android'] .usuario {
+  gap: 8px;
+  padding: 5px;
+  border: 1px solid var(--android-outline);
+  border-radius: 18px;
+  background: rgb(248 250 244 / 78%);
+  box-shadow: var(--android-shadow);
+}
+
+:root[data-estilo='android'] .usuario-email {
+  color: var(--android-on-surface-variant);
+}
+
+:root[data-estilo='android'] .boton-tema,
+:root[data-estilo='android'] .boton-salir {
+  min-height: 38px;
+  border: 0;
+  border-radius: 13px;
+}
+
+:root[data-estilo='android'] .boton-tema {
+  width: 38px;
+  color: var(--android-primary-strong);
+  background: var(--android-surface-high);
+}
+
+:root[data-estilo='android'] .boton-salir {
+  padding: 0 15px;
+  color: var(--android-on-primary);
+  background: var(--android-primary);
+}
+
+:root[data-estilo='android'] .boton-tema:hover,
+:root[data-estilo='android'] .boton-salir:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+:root[data-estilo='android'] .acceso-tema {
+  z-index: 5;
+  top: 22px;
+  right: 22px;
+  width: 38px;
+  height: 38px;
+  min-height: 38px;
+  border: 2px solid var(--cutout-ink);
+  border-radius: 13px 4px 13px 4px;
+  color: var(--cutout-ink);
+  background: var(--cutout-paper);
+  box-shadow: 3px 3px 0 var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .acceso-tema:hover {
+  border-color: var(--cutout-gold);
+  background: var(--cutout-cream);
+}
+
+:root[data-estilo='android'] .acceso-controles {
+  z-index: 4;
+  top: 22px;
+  right: 72px;
+  left: auto;
+  width: 148px;
+  padding: 5px;
+  border: 2px solid var(--cutout-ink);
+  border-radius: 16px 5px 16px 5px;
+  background: var(--cutout-cream);
+  box-shadow: 4px 4px 0 var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .acceso-controles .selector-estilo {
+  width: 100%;
+  min-width: 0;
+}
+
+:root[data-estilo='android'] .acceso-controles .selector-estilo-etiqueta {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+:root[data-estilo='android'] .acceso-controles .selector-personalizado-boton {
+  height: 32px;
+  min-height: 32px;
+  border: 1px solid var(--cutout-ink);
+  border-radius: 11px 4px 11px 4px;
+  color: var(--cutout-ink);
+  background: var(--cutout-paper);
+  font-size: .67rem;
+}
+
+:root[data-estilo='android'] .acceso-controles .selector-personalizado-menu {
+  z-index: 70;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-tema,
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-controles {
+  border-color: var(--cutout-ink);
+  background: var(--cutout-paper);
+  box-shadow: 4px 4px 0 rgb(0 0 0 / 30%);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-controles .selector-personalizado-boton {
+  border-color: var(--cutout-ink);
+  color: var(--cutout-ink);
+  background: var(--cutout-cream);
+}
+
+:root[data-estilo='android'] .bienvenida {
+  margin-bottom: 22px;
+}
+
+:root[data-estilo='android'] .sobrelinea {
+  color: var(--android-secondary);
+}
+
+:root[data-estilo='android'] .bienvenida-texto,
+:root[data-estilo='android'] .usuario-email,
+:root[data-estilo='android'] .fecha-hoy {
+  color: var(--android-on-surface-variant);
+}
+
+:root[data-estilo='android'] .fecha-hoy {
+  min-height: 48px;
+  padding: 8px 14px;
+  border: 1px solid var(--android-outline);
+  border-radius: 16px;
+  background: var(--android-surface);
+  box-shadow: var(--android-shadow);
+}
+
+:root[data-estilo='android'] .reloj-tiempo-real {
+  color: var(--android-primary-strong);
+}
+
+:root[data-estilo='android'] .punto-activo {
+  background: var(--android-secondary);
+  box-shadow: 0 0 0 4px var(--android-secondary-soft);
+}
+
+:root[data-estilo='android'] .navegacion-panel {
+  gap: 4px;
+  min-height: 56px;
+  margin-bottom: 22px;
+  padding: 7px;
+  border: 1px solid var(--android-outline);
+  border-radius: 20px;
+  background: var(--android-surface-container);
+  box-shadow: var(--android-shadow);
+}
+
+:root[data-estilo='android'] .navegacion-item {
+  min-height: 42px;
+  border-radius: 14px;
+  color: var(--android-on-surface-variant);
+  font-size: .8rem;
+  font-weight: 700;
+  transition: color .2s ease, background .2s ease, transform .2s ease;
+}
+
+:root[data-estilo='android'] .navegacion-item:hover {
+  color: var(--android-primary-strong);
+  background: rgb(255 255 255 / 62%);
+}
+
+:root[data-estilo='android'] .navegacion-item > span:first-child {
+  color: var(--android-primary);
+}
+
+:root[data-estilo='android'] .navegacion-indicador {
+  top: 7px;
+  height: 42px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #629b6d, var(--android-primary));
+  box-shadow: 0 5px 13px rgb(42 84 53 / 24%);
+  transition: transform .48s cubic-bezier(.2, .8, .2, 1), width .48s cubic-bezier(.2, .8, .2, 1);
+}
+
+:root[data-estilo='android'] .navegacion-item.navegacion-activa > span:first-child {
+  color: var(--android-on-primary);
+}
+
+:root[data-estilo='android'] .resumen {
+  gap: 14px;
+}
+
+:root[data-estilo='android'] .resumen-card,
+:root[data-estilo='android'] .seccion,
+:root[data-estilo='android'] .meta,
+:root[data-estilo='android'] .prestamo,
+:root[data-estilo='android'] .presupuesto-item,
+:root[data-estilo='android'] .recurrente-item,
+:root[data-estilo='android'] .estado-vacio {
+  border: 1px solid var(--android-outline);
+  border-radius: 24px;
+  background: var(--android-surface);
+  box-shadow: var(--android-shadow);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+:root[data-estilo='android'] .resumen-card:hover,
+:root[data-estilo='android'] .seccion:hover,
+:root[data-estilo='android'] .meta:hover,
+:root[data-estilo='android'] .prestamo:hover {
+  transform: translateY(-3px);
+  border-color: #9fbd9f;
+  box-shadow: 0 18px 38px rgb(42 72 49 / 16%);
+}
+
+:root[data-estilo='android'] .resumen-principal {
+  color: var(--android-on-primary);
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--android-primary), var(--android-primary-strong));
+  box-shadow: 0 16px 34px rgb(42 84 53 / 25%), inset 0 1px 0 rgb(255 255 255 / 22%);
+}
+
+:root[data-estilo='android'] .resumen-principal .resumen-etiqueta,
+:root[data-estilo='android'] .resumen-principal .resumen-ayuda {
+  color: rgb(243 255 242 / 78%);
+}
+
+:root[data-estilo='android'] .resumen-principal .resumen-icono {
+  color: var(--android-secondary-soft);
+}
+
+:root[data-estilo='android'] .resumen-decoracion {
+  color: rgb(248 237 201 / 25%);
+  animation: android-float 5s ease-in-out infinite;
+}
+
+:root[data-estilo='android'] .titulo-icono,
+:root[data-estilo='android'] .resumen-icono,
+:root[data-estilo='android'] .meta-icono,
+:root[data-estilo='android'] .vacio-icono,
+:root[data-estilo='android'] .prestamo-avatar {
+  border-radius: 14px;
+  color: var(--android-primary-strong);
+  background: var(--android-surface-container);
+}
+
+:root[data-estilo='android'] .icono-prestamo,
+:root[data-estilo='android'] .icono-historial,
+:root[data-estilo='android'] .meta-estado,
+:root[data-estilo='android'] .frecuencia-variable,
+:root[data-estilo='android'] .frecuencia-prestamo {
+  color: #806018;
+  background: var(--android-secondary-soft);
+}
+
+:root[data-estilo='android'] input,
+:root[data-estilo='android'] select,
+:root[data-estilo='android'] .selector-estilo select,
+:root[data-estilo='android'] .filtros-historial input,
+:root[data-estilo='android'] .filtros-historial select {
+  height: 48px;
+  border: 1px solid var(--android-outline);
+  border-radius: 14px;
+  color: var(--android-on-surface);
+  background: var(--android-surface);
+  box-shadow: none;
+  transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+:root[data-estilo='android'] input::placeholder {
+  color: #829084;
+}
+
+:root[data-estilo='android'] input:focus,
+:root[data-estilo='android'] select:focus {
+  border-color: var(--android-primary);
+  outline: 0;
+  background: #fcfef8;
+  box-shadow: 0 0 0 3px rgb(66 107 76 / 18%);
+}
+
+:root[data-estilo='android'] .formulario-meta,
+:root[data-estilo='android'] .formulario-prestamo,
+:root[data-estilo='android'] .formulario-extra,
+:root[data-estilo='android'] .filtros-historial,
+:root[data-estilo='android'] .abono-anticipado {
+  border: 1px solid var(--android-outline);
+  border-radius: 18px;
+  background: var(--android-surface-container);
+}
+
+:root[data-estilo='android'] .boton-primario,
+:root[data-estilo='android'] .boton-secundario,
+:root[data-estilo='android'] .limpiar-filtros {
+  min-height: 46px;
+  border-radius: 14px;
+  box-shadow: 0 5px 12px rgb(42 72 49 / 14%);
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+:root[data-estilo='android'] .boton-primario {
+  color: var(--android-on-primary);
+  background: var(--android-primary);
+}
+
+:root[data-estilo='android'] .boton-secundario,
+:root[data-estilo='android'] .limpiar-filtros {
+  color: #765a19;
+  border: 1px solid #e4ce8d;
+  background: var(--android-secondary-soft);
+}
+
+:root[data-estilo='android'] .boton-primario:hover:not(:disabled),
+:root[data-estilo='android'] .boton-secundario:hover:not(:disabled),
+:root[data-estilo='android'] .limpiar-filtros:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+  box-shadow: 0 8px 18px rgb(42 72 49 / 18%);
+}
+
+:root[data-estilo='android'] .pantalla-acceso {
+  border: 1px solid var(--android-outline);
+  border-radius: 28px;
+  background: var(--android-surface);
+  box-shadow: 0 24px 60px rgb(42 72 49 / 16%);
+}
+
+:root[data-estilo='android'] .acceso-presentacion {
+  background:
+    linear-gradient(145deg, var(--android-primary-strong), var(--android-primary) 64%, #668b55),
+    radial-gradient(circle at 90% 15%, rgb(255 255 255 / 20%), transparent 17rem);
+}
+
+:root[data-estilo='android'] .presentacion-resumen {
+  border-radius: 20px;
+  background: rgb(255 255 255 / 14%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 25%);
+}
+
+:root[data-estilo='android'] .acceso-formulario {
+  background: var(--android-surface);
+}
+
+:root[data-estilo='android'] .form-acceso input {
+  height: 50px;
+}
+
+:root[data-estilo='android'] .boton-acceso {
+  min-height: 50px;
+}
+
+:root[data-estilo='android'] .selector-estilo {
+  color: var(--android-on-surface-variant);
+}
+
+:root[data-estilo='android'] .selector-estilo select {
+  height: 36px;
+  border-radius: 12px;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] {
+  --android-primary: #a8c99e;
+  --android-primary-strong: #7fae78;
+  --android-on-primary: #17251a;
+  --android-secondary: #e8c978;
+  --android-secondary-soft: #443b25;
+  --android-surface: #1b2820;
+  --android-surface-container: #25372b;
+  --android-surface-high: #304333;
+  --android-outline: #5e7b61;
+  --android-on-surface: #e4eee0;
+  --android-on-surface-variant: #b7c8b4;
+  --android-shadow: 0 12px 28px rgb(5 15 9 / 32%);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] body {
+  color: var(--android-on-surface);
+  color: var(--android-on-surface);
+  background:
+    radial-gradient(circle at 8% 0%, rgb(102 151 92 / 25%), transparent 26rem),
+    radial-gradient(circle at 100% 14%, rgb(205 166 75 / 14%), transparent 24rem),
+    linear-gradient(145deg, #101912 0%, #17251b 52%, #122019 100%);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .usuario,
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-panel,
+:root[data-tema='oscuro'][data-estilo='android'] .resumen-card:not(.resumen-principal),
+:root[data-tema='oscuro'][data-estilo='android'] .seccion,
+:root[data-tema='oscuro'][data-estilo='android'] .meta,
+:root[data-tema='oscuro'][data-estilo='android'] .prestamo,
+:root[data-tema='oscuro'][data-estilo='android'] .presupuesto-item,
+:root[data-tema='oscuro'][data-estilo='android'] .recurrente-item,
+:root[data-tema='oscuro'][data-estilo='android'] .estado-vacio,
+:root[data-tema='oscuro'][data-estilo='android'] .pantalla-acceso {
+  border-color: var(--android-outline);
+  background: var(--android-surface);
+  box-shadow: var(--android-shadow);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-panel {
+  background: var(--android-surface-container);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-item {
+  color: var(--android-on-surface-variant);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-item:hover {
+  color: var(--android-primary);
+  background: rgb(168 201 158 / 13%);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-item > span:first-child,
+:root[data-tema='oscuro'][data-estilo='android'] .titulo-icono,
+:root[data-tema='oscuro'][data-estilo='android'] .resumen-icono,
+:root[data-tema='oscuro'][data-estilo='android'] .meta-icono,
+:root[data-tema='oscuro'][data-estilo='android'] .vacio-icono,
+:root[data-tema='oscuro'][data-estilo='android'] .prestamo-avatar {
+  color: var(--android-primary);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .icono-prestamo,
+:root[data-tema='oscuro'][data-estilo='android'] .icono-historial,
+:root[data-tema='oscuro'][data-estilo='android'] .meta-estado,
+:root[data-tema='oscuro'][data-estilo='android'] .frecuencia-variable,
+:root[data-tema='oscuro'][data-estilo='android'] .frecuencia-prestamo {
+  color: var(--android-secondary);
+  background: var(--android-secondary-soft);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] input,
+:root[data-tema='oscuro'][data-estilo='android'] select,
+:root[data-tema='oscuro'][data-estilo='android'] .selector-estilo select,
+:root[data-tema='oscuro'][data-estilo='android'] .filtros-historial input,
+:root[data-tema='oscuro'][data-estilo='android'] .filtros-historial select {
+  color: var(--android-on-surface);
+  border-color: var(--android-outline);
+  background: #1d2c22;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] input:focus,
+:root[data-tema='oscuro'][data-estilo='android'] select:focus {
+  background: #263a2b;
+  box-shadow: 0 0 0 3px rgb(168 201 158 / 20%);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .formulario-meta,
+:root[data-tema='oscuro'][data-estilo='android'] .formulario-prestamo,
+:root[data-tema='oscuro'][data-estilo='android'] .formulario-extra,
+:root[data-tema='oscuro'][data-estilo='android'] .filtros-historial,
+:root[data-tema='oscuro'][data-estilo='android'] .abono-anticipado {
+  border-color: var(--android-outline);
+  background: #203126;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .boton-secundario,
+:root[data-tema='oscuro'][data-estilo='android'] .limpiar-filtros {
+  color: var(--android-secondary);
+  border-color: #66552b;
+  background: var(--android-secondary-soft);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .boton-tema {
+  color: var(--android-secondary);
+  background: var(--android-surface-high);
+}
+
+@keyframes android-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes android-float {
+  0%, 100% { transform: rotate(-15deg) translateY(0); }
+  50% { transform: rotate(-12deg) translateY(-8px); }
+}
+
+@media (max-width: 760px) {
+  :root[data-estilo='android'] #root {
+    padding: 18px 14px 36px;
+  }
+
+  :root[data-estilo='android'] .app-header {
+    margin-bottom: 24px;
+  }
+
+  :root[data-estilo='android'] .usuario {
+    max-width: 62%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-estilo='android'] .dashboard,
+  :root[data-estilo='android'] .resumen-decoracion {
+    animation: none;
+  }
+}
+
+/* Google app layer: Material 3 spacing, tonal surfaces and compact app bars. */
+:root[data-estilo='android'] {
+  --android-google-surface: #f9fbf6;
+  --android-google-surface-1: #f0f5ed;
+  --android-google-surface-2: #e6efe4;
+  --android-google-radius: 20px;
+  --android-google-shadow: 0 2px 6px rgb(42 72 49 / 10%), 0 8px 20px rgb(42 72 49 / 8%);
+}
+
+:root[data-estilo='android'] body {
+  background:
+    radial-gradient(circle at 100% 0%, rgb(226 239 218 / 76%), transparent 25rem),
+    linear-gradient(180deg, #f8fbf6 0%, #edf4eb 58%, #e8f0e5 100%);
+}
+
+:root[data-estilo='android'] #root {
+  padding: 18px 24px 44px;
+}
+
+:root[data-estilo='android'] .app-header {
+  min-height: 56px;
+  margin-bottom: 26px;
+  padding: 0 2px;
+}
+
+:root[data-estilo='android'] .marca {
+  font-size: 1.08rem;
+  letter-spacing: -.035em;
+}
+
+:root[data-estilo='android'] .marca-icono {
+  width: 40px;
+  height: 40px;
+  border-radius: 13px;
+  box-shadow: none;
+}
+
+:root[data-estilo='android'] .usuario {
+  border: 0;
+  border-radius: 18px;
+  background: transparent;
+  box-shadow: none;
+}
+
+:root[data-estilo='android'] .boton-tema {
+  border: 0;
+  border-radius: 50%;
+  background: var(--android-google-surface-2);
+}
+
+:root[data-estilo='android'] .boton-salir {
+  min-height: 40px;
+  border-radius: 20px;
+  box-shadow: none;
+}
+
+:root[data-estilo='android'] .bienvenida {
+  align-items: flex-start;
+  margin-bottom: 18px;
+}
+
+:root[data-estilo='android'] .bienvenida h1 {
+  max-width: 620px;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  letter-spacing: -.06em;
+}
+
+:root[data-estilo='android'] .fecha-hoy {
+  min-height: 44px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--android-google-surface-1);
+  box-shadow: none;
+}
+
+:root[data-estilo='android'] .navegacion-panel {
+  min-height: 56px;
+  border: 0;
+  border-radius: 28px;
+  background: var(--android-google-surface-1);
+  box-shadow: none;
+}
+
+:root[data-estilo='android'] .navegacion-item {
+  border-radius: 22px;
+  font-size: .78rem;
+}
+
+:root[data-estilo='android'] .navegacion-item:hover {
+  background: var(--android-google-surface-2);
+}
+
+:root[data-estilo='android'] .navegacion-indicador {
+  top: 7px;
+  height: 42px;
+  border-radius: 22px;
+  background: var(--android-primary);
+  box-shadow: none;
+}
+
+:root[data-estilo='android'] .resumen-card,
+:root[data-estilo='android'] .seccion,
+:root[data-estilo='android'] .meta,
+:root[data-estilo='android'] .prestamo,
+:root[data-estilo='android'] .presupuesto-item,
+:root[data-estilo='android'] .recurrente-item,
+:root[data-estilo='android'] .estado-vacio {
+  border: 0;
+  border-radius: var(--android-google-radius);
+  background: var(--android-google-surface);
+  box-shadow: var(--android-google-shadow);
+}
+
+:root[data-estilo='android'] .seccion {
+  padding: 26px;
+}
+
+:root[data-estilo='android'] .resumen-card:hover,
+:root[data-estilo='android'] .seccion:hover,
+:root[data-estilo='android'] .meta:hover,
+:root[data-estilo='android'] .prestamo:hover {
+  transform: translateY(-2px);
+  border-color: transparent;
+  box-shadow: 0 4px 10px rgb(42 72 49 / 11%), 0 12px 25px rgb(42 72 49 / 10%);
+}
+
+:root[data-estilo='android'] .resumen-principal {
+  background: linear-gradient(145deg, #4f805a, var(--android-primary-strong));
+  box-shadow: 0 8px 22px rgb(42 84 53 / 20%);
+}
+
+:root[data-estilo='android'] .titulo-icono,
+:root[data-estilo='android'] .resumen-icono,
+:root[data-estilo='android'] .meta-icono,
+:root[data-estilo='android'] .vacio-icono,
+:root[data-estilo='android'] .prestamo-avatar {
+  border-radius: 12px;
+  background: var(--android-google-surface-2);
+}
+
+:root[data-estilo='android'] input,
+:root[data-estilo='android'] select,
+:root[data-estilo='android'] .selector-estilo select,
+:root[data-estilo='android'] .filtros-historial input,
+:root[data-estilo='android'] .filtros-historial select {
+  border: 0;
+  border-bottom: 2px solid var(--android-outline);
+  border-radius: 12px 12px 4px 4px;
+  background: var(--android-google-surface-1);
+}
+
+:root[data-estilo='android'] input:focus,
+:root[data-estilo='android'] select:focus {
+  border-bottom-color: var(--android-primary);
+  box-shadow: 0 2px 0 var(--android-primary);
+}
+
+:root[data-estilo='android'] .formulario-meta,
+:root[data-estilo='android'] .formulario-prestamo,
+:root[data-estilo='android'] .formulario-extra,
+:root[data-estilo='android'] .filtros-historial,
+:root[data-estilo='android'] .abono-anticipado {
+  border: 0;
+  border-radius: 16px;
+  background: var(--android-google-surface-1);
+}
+
+:root[data-estilo='android'] .boton-primario {
+  min-height: 48px;
+  border-radius: 24px;
+  background: var(--android-primary);
+  box-shadow: none;
+}
+
+:root[data-estilo='android'] .boton-secundario,
+:root[data-estilo='android'] .limpiar-filtros {
+  min-height: 48px;
+  border: 0;
+  border-radius: 24px;
+  background: var(--android-secondary-soft);
+  box-shadow: none;
+}
+
+:root[data-estilo='android'] .pantalla-acceso {
+  border: 0;
+  border-radius: 28px;
+  background: var(--android-google-surface);
+  box-shadow: 0 16px 42px rgb(42 72 49 / 14%);
+}
+
+:root[data-estilo='android'] .acceso-presentacion {
+  background: linear-gradient(145deg, #315b43, #4f805a 66%, #6f8e51);
+}
+
+:root[data-estilo='android'] .acceso-formulario {
+  background: var(--android-google-surface);
+}
+
+:root[data-estilo='android'] .selector-estilo select {
+  height: 38px;
+  border: 1px solid var(--android-outline);
+  border-radius: 19px;
+  background: var(--android-google-surface);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] {
+  --android-google-surface: #1d2a20;
+  --android-google-surface-1: #26352a;
+  --android-google-surface-2: #304331;
+  --android-google-shadow: 0 4px 12px rgb(0 0 0 / 28%), 0 12px 26px rgb(0 0 0 / 18%);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] body {
+  background:
+    radial-gradient(circle at 100% 0%, rgb(49 91 67 / 35%), transparent 25rem),
+    linear-gradient(180deg, #111a14 0%, #18241b 58%, #141d17 100%);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .usuario {
+  background: transparent;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-panel,
+:root[data-tema='oscuro'][data-estilo='android'] .formulario-meta,
+:root[data-tema='oscuro'][data-estilo='android'] .formulario-prestamo,
+:root[data-tema='oscuro'][data-estilo='android'] .formulario-extra,
+:root[data-tema='oscuro'][data-estilo='android'] .filtros-historial,
+:root[data-tema='oscuro'][data-estilo='android'] .abono-anticipado {
+  background: var(--android-google-surface-1);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-item:hover {
+  background: var(--android-google-surface-2);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .resumen-card,
+:root[data-tema='oscuro'][data-estilo='android'] .seccion,
+:root[data-tema='oscuro'][data-estilo='android'] .meta,
+:root[data-tema='oscuro'][data-estilo='android'] .prestamo,
+:root[data-tema='oscuro'][data-estilo='android'] .presupuesto-item,
+:root[data-tema='oscuro'][data-estilo='android'] .recurrente-item,
+:root[data-tema='oscuro'][data-estilo='android'] .estado-vacio,
+:root[data-tema='oscuro'][data-estilo='android'] .pantalla-acceso,
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-formulario {
+  background: var(--android-google-surface);
+  box-shadow: var(--android-google-shadow);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] input,
+:root[data-tema='oscuro'][data-estilo='android'] select,
+:root[data-tema='oscuro'][data-estilo='android'] .selector-estilo select,
+:root[data-tema='oscuro'][data-estilo='android'] .filtros-historial input,
+:root[data-tema='oscuro'][data-estilo='android'] .filtros-historial select {
+  border: 0;
+  border-bottom: 2px solid var(--android-outline);
+  background: var(--android-google-surface-1);
+}
+
+@media (max-width: 760px) {
+  :root[data-estilo='android'] #root {
+    padding: 14px 14px 34px;
+  }
+
+  :root[data-estilo='android'] .bienvenida {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  :root[data-estilo='android'] .fecha-hoy {
+    align-self: stretch;
+  }
+}
+
+/* Expressive Cutout: bold Google-like color blocks and editorial shapes. */
+:root[data-estilo='android'] {
+  --cutout-cream: #fffaf0;
+  --cutout-paper: #f2f5e9;
+  --cutout-ink: #203328;
+  --cutout-green: #315b43;
+  --cutout-green-light: #cfe3c7;
+  --cutout-gold: #b88724;
+  --cutout-gold-light: #f4dda0;
+}
+
+:root[data-estilo='android'] body {
+  background:
+    radial-gradient(circle at 8% 10%, var(--cutout-green-light) 0 7rem, transparent 7.1rem),
+    radial-gradient(circle at 94% 22%, var(--cutout-gold-light) 0 8rem, transparent 8.1rem),
+    linear-gradient(145deg, #f8f6e9 0%, var(--cutout-cream) 52%, #e4efdf 100%);
+}
+
+:root[data-estilo='android'] body::before {
+  top: 20%;
+  right: -6rem;
+  width: 15rem;
+  height: 15rem;
+  border: 2rem solid rgb(49 91 67 / 12%);
+  background: transparent;
+  filter: none;
+}
+
+:root[data-estilo='android'] body::after {
+  bottom: -5rem;
+  left: 18%;
+  width: 11rem;
+  height: 5rem;
+  border-radius: 50%;
+  background: rgb(184 135 36 / 16%);
+  filter: none;
+  transform: rotate(-18deg);
+}
+
+:root[data-estilo='android'] #root {
+  padding: 30px 28px 54px;
+}
+
+:root[data-estilo='android'] .dashboard {
+  width: min(100%, 1140px);
+}
+
+:root[data-estilo='android'] .app-header {
+  min-height: 64px;
+  margin-bottom: 38px;
+}
+
+:root[data-estilo='android'] .marca {
+  gap: 14px;
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: -.05em;
+}
+
+:root[data-estilo='android'] .marca-icono {
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--cutout-ink);
+  border-radius: 18px 5px 18px 5px;
+  color: var(--cutout-ink);
+  background: var(--cutout-gold);
+  box-shadow: 4px 4px 0 var(--cutout-green);
+  font-size: 1.35rem;
+  font-weight: 900;
+  transform: rotate(-4deg);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+:root[data-estilo='android'] .marca:hover .marca-icono {
+  box-shadow: 5px 5px 0 var(--cutout-green);
+  transform: translate(-1px, -1px) rotate(-7deg);
+}
+
+:root[data-estilo='android'] .marca-contenido {
+  gap: 13px;
+}
+
+:root[data-estilo='android'] .marca-logo {
+  width: 58px;
+  height: 50px;
+  color: var(--cutout-green);
+  filter: drop-shadow(3px 3px 0 rgb(79 128 90 / 30%));
+  transition: transform .2s ease, filter .2s ease;
+}
+
+:root[data-estilo='android'] .marca-nombre {
+  color: var(--cutout-ink);
+  font-family: "Arial Narrow", "Trebuchet MS", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+}
+
+:root[data-estilo='android'] .marca-nombre strong {
+  color: var(--cutout-gold);
+}
+
+:root[data-estilo='android'] .marca:hover .marca-logo {
+  filter: drop-shadow(4px 4px 0 rgb(79 128 90 / 42%));
+  transform: translateY(-2px) rotate(-2deg);
+}
+
+:root[data-tema='claro'][data-estilo='android'] .marca-icono {
+  border-color: #20372a;
+  color: #20372a;
+  background: #f4dda0;
+  box-shadow: 4px 4px 0 #4f805a;
+}
+
+:root[data-tema='claro'][data-estilo='android'] .marca:hover .marca-icono {
+  box-shadow: 5px 5px 0 #4f805a;
+}
+
+:root[data-estilo='android'] .usuario {
+  gap: 10px;
+}
+
+:root[data-estilo='android'] .boton-tema {
+  color: var(--cutout-ink);
+  background: var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .boton-salir {
+  color: #fffdf2;
+  background: var(--cutout-green);
+  box-shadow: 4px 4px 0 rgb(184 135 36 / 70%);
+}
+
+:root[data-estilo='android'] .bienvenida {
+  position: relative;
+  margin-bottom: 30px;
+  padding: 28px 30px 26px;
+  border-radius: 28px 8px 28px 8px;
+  background: var(--cutout-green);
+  box-shadow: 10px 10px 0 var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .bienvenida::after {
+  display: none;
+}
+
+:root[data-estilo='android'] .bienvenida h1,
+:root[data-estilo='android'] .bienvenida-texto,
+:root[data-estilo='android'] .bienvenida .sobrelinea {
+  position: relative;
+  z-index: 1;
+  color: #f7fff1;
+}
+
+:root[data-estilo='android'] .bienvenida h1 {
+  max-width: 620px;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  letter-spacing: -.07em;
+}
+
+:root[data-estilo='android'] .bienvenida-texto {
+  color: rgb(247 255 241 / 76%);
+}
+
+:root[data-estilo='android'] .fecha-hoy {
+  position: relative;
+  z-index: 1;
+  justify-content: center;
+  text-align: center;
+  border: 2px solid var(--cutout-gold-light);
+  color: var(--cutout-ink);
+  background: var(--cutout-cream);
+  box-shadow: 4px 4px 0 var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .fecha-hoy .punto-activo {
+  position: static;
+  display: block;
+  flex: 0 0 auto;
+  transform: none;
+}
+
+:root[data-estilo='android'] .reloj-tiempo-real {
+  color: var(--cutout-green);
+}
+
+:root[data-estilo='android'] .navegacion-panel {
+  position: relative;
+  border: 2px solid var(--cutout-ink);
+  border-radius: 24px 8px 24px 8px;
+  background: var(--cutout-cream);
+  box-shadow: 5px 5px 0 var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .navegacion-item {
+  z-index: 1;
+  border-radius: 16px 6px 16px 6px;
+  color: var(--cutout-ink);
+  transition: color .2s ease, background .2s ease;
+}
+
+:root[data-estilo='android'] .navegacion-item:hover {
+  color: var(--cutout-green);
+  background: var(--cutout-green-light);
+  box-shadow: inset 0 0 0 2px var(--cutout-green);
+}
+
+:root[data-estilo='android'] .navegacion-item:hover > span:first-child {
+  color: var(--cutout-green);
+}
+
+:root[data-estilo='android'] .navegacion-indicador {
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 7px;
+  height: 42px;
+  border-radius: 16px 6px 16px 6px;
+  background: var(--cutout-gold-light);
+  box-shadow: 4px 4px 0 var(--cutout-green);
+}
+
+:root[data-estilo='android'] .navegacion-item.navegacion-activa::after {
+  display: none;
+}
+
+:root[data-estilo='android'] .navegacion-item.navegacion-activa::before {
+  display: none;
+}
+
+:root[data-estilo='android'] .navegacion-item.navegacion-activa {
+  color: var(--cutout-ink);
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+
+:root[data-estilo='android'] .navegacion-item.navegacion-activa > span:first-child {
+  color: var(--cutout-ink);
+}
+
+:root[data-estilo='android'] .resumen {
+  gap: 20px;
+}
+
+:root[data-estilo='android'] .resumen-card,
+:root[data-estilo='android'] .seccion,
+:root[data-estilo='android'] .meta,
+:root[data-estilo='android'] .prestamo,
+:root[data-estilo='android'] .presupuesto-item,
+:root[data-estilo='android'] .recurrente-item,
+:root[data-estilo='android'] .estado-vacio {
+  border: 2px solid var(--cutout-ink);
+  border-radius: 28px 10px 28px 10px;
+  background: var(--cutout-paper);
+  box-shadow: 7px 7px 0 rgb(49 91 67 / 22%);
+}
+
+:root[data-estilo='android'] .resumen-card:nth-child(2) {
+  border-radius: 10px 28px 10px 28px;
+  transform: rotate(-1deg);
+}
+
+:root[data-estilo='android'] .resumen-card:nth-child(3) {
+  transform: rotate(1deg);
+}
+
+:root[data-estilo='android'] .resumen-card:hover,
+:root[data-estilo='android'] .seccion:hover,
+:root[data-estilo='android'] .meta:hover,
+:root[data-estilo='android'] .prestamo:hover {
+  transform: translateY(-4px) rotate(0);
+  border-color: var(--cutout-green);
+  box-shadow: 9px 9px 0 rgb(184 135 36 / 45%);
+}
+
+:root[data-estilo='android'] .resumen-principal {
+  border-color: var(--cutout-ink);
+  color: #f8fff2;
+  background: var(--cutout-green);
+  box-shadow: 8px 8px 0 var(--cutout-gold);
+}
+
+:root[data-estilo='android'] .resumen-principal .resumen-icono {
+  color: var(--cutout-ink);
+  background: var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .resumen-decoracion {
+  color: rgb(244 221 160 / 48%);
+}
+
+:root[data-estilo='android'] .titulo-icono,
+:root[data-estilo='android'] .resumen-icono,
+:root[data-estilo='android'] .meta-icono,
+:root[data-estilo='android'] .vacio-icono,
+:root[data-estilo='android'] .prestamo-avatar {
+  border-radius: 12px 4px 12px 4px;
+  color: var(--cutout-green);
+  background: var(--cutout-green-light);
+}
+
+:root[data-estilo='android'] .icono-prestamo,
+:root[data-estilo='android'] .icono-historial,
+:root[data-estilo='android'] .meta-estado,
+:root[data-estilo='android'] .frecuencia-variable,
+:root[data-estilo='android'] .frecuencia-prestamo {
+  color: var(--cutout-ink);
+  background: var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] input,
+:root[data-estilo='android'] select,
+:root[data-estilo='android'] .selector-estilo select,
+:root[data-estilo='android'] .filtros-historial input,
+:root[data-estilo='android'] .filtros-historial select {
+  border: 2px solid var(--cutout-ink);
+  border-radius: 12px 4px 12px 4px;
+  color: var(--cutout-ink);
+  background: var(--cutout-cream);
+  box-shadow: 3px 3px 0 var(--cutout-green-light);
+  transition: transform .22s cubic-bezier(.2, .8, .2, 1), border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+:root[data-estilo='android'] input:focus,
+:root[data-estilo='android'] select:focus {
+  border-color: var(--cutout-green);
+  box-shadow: 4px 4px 0 var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] select:hover,
+:root[data-estilo='android'] .selector-estilo select:hover,
+:root[data-estilo='android'] .filtros-historial select:hover {
+  transform: translate(-1px, -1px) rotate(-.5deg);
+  border-color: var(--cutout-green);
+  background: var(--cutout-green-light);
+  box-shadow: 4px 4px 0 var(--cutout-gold);
+}
+
+:root[data-estilo='android'] option {
+  color: var(--cutout-ink);
+  background: var(--cutout-cream);
+  font-weight: 700;
+}
+
+:root[data-estilo='android'] option:checked {
+  color: #f8fff2;
+  background: var(--cutout-green);
+}
+
+:root[data-estilo='android'] option:hover {
+  color: var(--cutout-ink);
+  background: var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .formulario-meta,
+:root[data-estilo='android'] .formulario-prestamo,
+:root[data-estilo='android'] .formulario-extra,
+:root[data-estilo='android'] .filtros-historial,
+:root[data-estilo='android'] .abono-anticipado {
+  border: 2px solid var(--cutout-green);
+  border-radius: 18px 6px 18px 6px;
+  background: var(--cutout-green-light);
+}
+
+:root[data-estilo='android'] .boton-primario {
+  border: 2px solid var(--cutout-ink);
+  border-radius: 18px 6px 18px 6px;
+  color: #f8fff2;
+  background: var(--cutout-green);
+  box-shadow: 4px 4px 0 var(--cutout-gold);
+}
+
+:root[data-estilo='android'] .boton-secundario,
+:root[data-estilo='android'] .limpiar-filtros {
+  border: 2px solid var(--cutout-ink);
+  border-radius: 6px 18px 6px 18px;
+  color: var(--cutout-ink);
+  background: var(--cutout-gold-light);
+  box-shadow: 4px 4px 0 var(--cutout-green);
+}
+
+:root[data-estilo='android'] .pantalla-acceso {
+  border: 2px solid var(--cutout-ink);
+  border-radius: 30px 10px 30px 10px;
+  background: var(--cutout-cream);
+  box-shadow: 10px 10px 0 var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .acceso-presentacion {
+  background:
+    radial-gradient(circle at 85% 12%, var(--cutout-gold-light) 0 4rem, transparent 4.1rem),
+    linear-gradient(145deg, var(--cutout-green), var(--cutout-green) 62%, #668b55);
+}
+
+:root[data-estilo='android'] .presentacion-resumen {
+  border: 2px solid rgb(255 250 240 / 55%);
+  border-radius: 20px 6px 20px 6px;
+}
+
+:root[data-estilo='android'] .acceso-formulario {
+  background: var(--cutout-cream);
+}
+
+:root[data-estilo='android'] .boton-acceso {
+  border-radius: 18px 6px 18px 6px;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] {
+  --cutout-cream: #1b2820;
+  --cutout-paper: #26382c;
+  --cutout-ink: #e4eee0;
+  --cutout-green: #92bd88;
+  --cutout-green-light: #304a36;
+  --cutout-gold: #e8c978;
+  --cutout-gold-light: #514426;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] body {
+  background:
+    radial-gradient(circle at 8% 10%, rgb(104 153 91 / 24%) 0 8rem, transparent 8.1rem),
+    radial-gradient(circle at 94% 22%, rgb(214 174 76 / 14%) 0 8rem, transparent 8.1rem),
+    linear-gradient(145deg, #101912 0%, #1a2a20 54%, #14231b 100%);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .bienvenida {
+  background: #376345;
+  box-shadow: 8px 8px 0 #63552e;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .fecha-hoy,
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-panel {
+  border-color: #789878;
+  background: var(--cutout-paper);
+  box-shadow: 5px 5px 0 #122017;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-indicador {
+  background: var(--cutout-gold);
+  box-shadow: 4px 4px 0 var(--cutout-green);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-item.navegacion-activa > span:first-child {
+  color: var(--cutout-ink);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .resumen-card,
+:root[data-tema='oscuro'][data-estilo='android'] .seccion,
+:root[data-tema='oscuro'][data-estilo='android'] .meta,
+:root[data-tema='oscuro'][data-estilo='android'] .prestamo,
+:root[data-tema='oscuro'][data-estilo='android'] .presupuesto-item,
+:root[data-tema='oscuro'][data-estilo='android'] .recurrente-item,
+:root[data-tema='oscuro'][data-estilo='android'] .estado-vacio {
+  border-color: #648365;
+  background: #26382c;
+  box-shadow: 6px 6px 0 #122017;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] input,
+:root[data-tema='oscuro'][data-estilo='android'] select,
+:root[data-tema='oscuro'][data-estilo='android'] .selector-estilo select,
+:root[data-tema='oscuro'][data-estilo='android'] .filtros-historial input,
+:root[data-tema='oscuro'][data-estilo='android'] .filtros-historial select {
+  border-color: #648365;
+  color: var(--cutout-ink);
+  background: #1d2d23;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .formulario-meta,
+:root[data-tema='oscuro'][data-estilo='android'] .formulario-prestamo,
+:root[data-tema='oscuro'][data-estilo='android'] .formulario-extra,
+:root[data-tema='oscuro'][data-estilo='android'] .filtros-historial,
+:root[data-tema='oscuro'][data-estilo='android'] .abono-anticipado {
+  border-color: var(--cutout-green);
+  background: var(--cutout-green-light);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-formulario,
+:root[data-tema='oscuro'][data-estilo='android'] .pantalla-acceso {
+  background: var(--cutout-paper);
+}
+
+/* Expressive account panel: keep identity and profile actions together. */
+:root[data-estilo='android'] .usuario {
+  width: fit-content;
+  max-width: min(100%, 520px);
+  min-width: 0;
+  gap: 0;
+  padding: 8px;
+  border: 2px solid var(--cutout-ink);
+  border-radius: 22px 6px 22px 6px;
+  background: var(--cutout-cream);
+  box-shadow: 5px 5px 0 var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .usuario-cabecera {
+  display: grid;
+  grid-template-columns: max-content 38px;
+  gap: 8px;
+  align-items: center;
+}
+
+:root[data-estilo='android'] .usuario-identidad {
+  min-width: 0;
+  gap: 9px;
+}
+
+:root[data-estilo='android'] .usuario-avatar {
+  width: 42px;
+  height: 42px;
+  border: 2px solid var(--cutout-ink);
+  border-radius: 14px 4px 14px 4px;
+  color: var(--cutout-ink);
+  background: var(--cutout-green-light);
+  box-shadow: 3px 3px 0 var(--cutout-gold-light);
+  font-size: 1.2rem;
+}
+
+:root[data-estilo='android'] .usuario-avatar:hover {
+  transform: translate(-1px, -1px) rotate(-2deg);
+  box-shadow: 4px 4px 0 var(--cutout-gold);
+}
+
+:root[data-estilo='android'] .usuario-email {
+  min-width: 0;
+  max-width: none;
+  padding: 0;
+  overflow: hidden;
+  color: var(--cutout-ink);
+  font-size: 1rem;
+  font-weight: 800;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:root[data-estilo='android'] .boton-configuracion {
+  width: 38px;
+  height: 38px;
+  border: 2px solid var(--cutout-ink);
+  border-radius: 12px 4px 12px 4px;
+  color: var(--cutout-ink);
+  background: var(--cutout-paper);
+  box-shadow: 2px 2px 0 var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .boton-configuracion:hover {
+  transform: translate(-1px, -1px) rotate(4deg);
+  border-color: var(--cutout-green);
+  background: var(--cutout-green-light);
+}
+
+:root[data-estilo='android'] .menu-configuracion,
+:root[data-estilo='android'] .menu-perfil {
+  top: calc(100% + 10px);
+  right: 0;
+  width: min(100%, 318px);
+  min-width: 0;
+  padding: 13px;
+  border: 2px solid var(--cutout-ink);
+  border-radius: 18px 5px 18px 5px;
+  background: var(--cutout-paper);
+  box-shadow: 5px 5px 0 var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .menu-configuracion {
+  gap: 9px;
+}
+
+:root[data-estilo='android'] .menu-configuracion-titulo,
+:root[data-estilo='android'] .menu-perfil strong {
+  color: var(--cutout-ink);
+  font-size: .68rem;
+  font-weight: 850;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+:root[data-estilo='android'] .menu-configuracion .boton-tema {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 24px minmax(0, 1fr);
+  justify-items: start;
+  gap: 8px;
+  padding: 0 11px;
+  border: 0;
+  outline: 0;
+  border-radius: 13px 4px 13px 4px;
+  box-shadow: 4px 4px 0 var(--cutout-green);
+  text-align: left;
+}
+
+:root[data-estilo='android'] .menu-configuracion .boton-tema:hover {
+  box-shadow: 5px 5px 0 var(--cutout-green);
+}
+
+:root[data-estilo='android'] .menu-perfil {
+  grid-template-columns: 96px minmax(0, 1fr);
+  justify-items: stretch;
+  gap: 10px 12px;
+}
+
+:root[data-estilo='android'] .menu-perfil strong {
+  grid-column: 1 / -1;
+}
+
+:root[data-estilo='android'] .avatar-recorte {
+  width: 96px;
+  height: 96px;
+  border: 2px solid var(--cutout-ink);
+  border-radius: 18px 5px 18px 5px;
+  color: var(--cutout-green);
+  background: var(--cutout-green-light);
+  box-shadow: 4px 4px 0 var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .menu-perfil .boton-secundario,
+:root[data-estilo='android'] .menu-perfil .boton-primario,
+:root[data-estilo='android'] .menu-perfil .boton-eliminar,
+:root[data-estilo='android'] .menu-perfil .avatar-zoom {
+  grid-column: 2;
+}
+
+:root[data-estilo='android'] .menu-perfil .boton-secundario,
+:root[data-estilo='android'] .menu-perfil .boton-primario,
+:root[data-estilo='android'] .menu-perfil .boton-eliminar {
+  min-height: 36px;
+  border-radius: 13px 4px 13px 4px;
+  box-shadow: 3px 3px 0 var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .menu-perfil .avatar-zoom {
+  align-self: center;
+  color: var(--cutout-ink);
+  font-size: .68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+:root[data-estilo='android'] .menu-perfil .avatar-zoom input {
+  accent-color: var(--cutout-green);
+}
+
+:root[data-estilo='android'] .usuario-email {
+  max-width: none;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  text-align: left;
+}
+
+:root[data-estilo='android'] .usuario-controles {
+  gap: 7px;
+  padding: 6px;
+  border: 2px solid var(--cutout-ink);
+  border-radius: 22px 7px 22px 7px;
+  background: var(--cutout-cream);
+  box-shadow: 4px 4px 0 var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .usuario-controles .selector-estilo {
+  min-width: 0;
+  gap: 6px;
+  padding-left: 5px;
+  color: var(--cutout-ink);
+  font-size: .65rem;
+}
+
+:root[data-estilo='android'] .usuario-controles .selector-estilo-etiqueta {
+  font-weight: 800;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+:root[data-estilo='android'] .usuario-controles .selector-estilo select {
+  width: 132px;
+  height: 34px;
+  padding: 0 24px 0 10px;
+  border: 1px solid var(--cutout-ink);
+  border-radius: 13px 4px 13px 4px;
+  color: var(--cutout-ink);
+  background: var(--cutout-paper);
+  font-size: .68rem;
+}
+
+:root[data-estilo='android'] .selector-estilo select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--cutout-green) 50%),
+    linear-gradient(135deg, var(--cutout-green) 50%, transparent 50%);
+  background-position:
+    calc(100% - 13px) 50%,
+    calc(100% - 8px) 50%;
+  background-repeat: no-repeat;
+  background-size: 5px 5px, 5px 5px;
+}
+
+:root[data-estilo='android'] .selector-personalizado-boton {
+  height: 44px;
+  min-height: 44px;
+  width: 100%;
+  font-size: .88rem;
+  padding: 0 12px;
+  border: 2px solid var(--cutout-ink);
+  border-radius: 12px 4px 12px 4px;
+  color: var(--cutout-ink);
+  background: var(--cutout-cream);
+  box-shadow: 3px 3px 0 var(--cutout-green-light);
+  font-weight: 700;
+  transition: transform .22s cubic-bezier(.2, .8, .2, 1), border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+:root[data-estilo='android'] .filtros-historial .selector-personalizado-boton {
+  height: 40px;
+  min-height: 40px;
+}
+
+:root[data-estilo='android'] .selector-personalizado-boton:hover,
+:root[data-estilo='android'] .selector-personalizado-boton[aria-expanded='true'] {
+  transform: translate(-1px, -1px) rotate(-.5deg);
+  border-color: var(--cutout-green);
+  background: var(--cutout-green-light);
+  box-shadow: 4px 4px 0 var(--cutout-gold);
+}
+
+:root[data-estilo='android'] .selector-personalizado-menu {
+  gap: 5px;
+  padding: 7px;
+  border: 2px solid var(--cutout-ink);
+  border-radius: 14px 5px 14px 5px;
+  background: var(--cutout-paper);
+  box-shadow: 5px 5px 0 var(--cutout-gold-light);
+  animation: cutout-menu-open .22s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+:root[data-estilo='android'] .selector-personalizado-opcion {
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: 10px 3px 10px 3px;
+  color: var(--cutout-ink);
+  font-size: .88rem;
+  font-weight: 700;
+  transition: transform .16s ease, background .16s ease, color .16s ease;
+}
+
+:root[data-estilo='android'] .selector-personalizado-opcion:hover {
+  color: var(--cutout-ink);
+  background: var(--cutout-gold-light);
+  box-shadow: inset 0 0 0 2px var(--cutout-gold);
+  transform: translateX(2px);
+}
+
+:root[data-estilo='android'] .selector-personalizado-opcion.seleccionada {
+  color: var(--cutout-ink);
+  background: transparent;
+  box-shadow: none;
+}
+
+:root[data-estilo='android'] .selector-personalizado-opcion:first-child.seleccionada {
+  color: var(--cutout-ink);
+  background: transparent;
+  box-shadow: none;
+}
+
+:root[data-estilo='android'] .selector-personalizado-opcion:hover {
+  color: var(--cutout-ink);
+  background: var(--cutout-gold-light);
+  box-shadow: inset 0 0 0 2px var(--cutout-gold);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .selector-personalizado-menu {
+  background: var(--cutout-paper);
+  box-shadow: 4px 4px 0 #17251c;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .selector-personalizado-opcion:hover,
+:root[data-tema='oscuro'][data-estilo='android'] .selector-personalizado-opcion.seleccionada {
+  color: var(--cutout-ink);
+  background: transparent;
+  box-shadow: none;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .selector-personalizado-opcion:first-child.seleccionada {
+  color: var(--cutout-ink);
+  background: transparent;
+  box-shadow: none;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .selector-personalizado-opcion:hover,
+:root[data-tema='oscuro'][data-estilo='android'] .selector-personalizado-opcion:first-child:hover {
+  color: #17251a;
+  background: var(--cutout-gold);
+  box-shadow: inset 0 0 0 2px #9f853e;
+}
+
+:root[data-estilo='android'] .selector-personalizado-opcion:first-child:hover {
+  color: var(--cutout-ink);
+  background: var(--cutout-gold-light);
+  box-shadow: inset 0 0 0 2px var(--cutout-gold);
+  transform: translateX(2px);
+}
+
+:root[data-estilo='android'] .formulario .selector-personalizado,
+:root[data-estilo='android'] .formulario-extra .selector-personalizado,
+:root[data-estilo='android'] .filtros-historial .selector-personalizado {
+  width: 100%;
+  min-width: 0;
+}
+
+:root[data-estilo='android'] .formulario-extra .selector-personalizado-boton {
+  height: 56px;
+  min-height: 56px;
+}
+
+:root[data-estilo='android'] .formulario-extra input {
+  height: 56px;
+  min-height: 56px;
+}
+
+:root[data-estilo='android'] .formulario-extra .selector-personalizado-boton,
+:root[data-estilo='android'] .formulario-extra input {
+  padding-right: 14px;
+  font-size: .92rem;
+}
+
+:root[data-estilo='android'] .usuario-controles .boton-tema,
+:root[data-estilo='android'] .usuario-controles .boton-salir {
+  min-height: 34px;
+  border: 1px solid var(--cutout-ink);
+  border-radius: 12px 4px 12px 4px;
+}
+
+:root[data-estilo='android'] .usuario-controles .boton-tema {
+  width: 34px;
+  padding: 0;
+}
+
+:root[data-estilo='android'] .usuario-controles .boton-salir {
+  padding: 0 11px;
+  box-shadow: none;
+  font-size: .68rem;
+  font-weight: 800;
+}
+
+:root[data-estilo='android'] .acceso-controles {
+  top: 22px;
+  left: auto;
+  right: 22px;
+  padding: 5px;
+  border: 2px solid var(--cutout-ink);
+  border-radius: 16px 5px 16px 5px;
+  background: var(--cutout-cream);
+  box-shadow: 4px 4px 0 var(--cutout-gold-light);
+}
+
+:root[data-estilo='android'] .acceso-controles .selector-estilo {
+  min-width: 0;
+  gap: 5px;
+  color: var(--cutout-ink);
+  font-size: .62rem;
+}
+
+:root[data-estilo='android'] .acceso-controles .selector-estilo-etiqueta {
+  display: none;
+}
+
+:root[data-estilo='android'] .acceso-controles .selector-estilo select {
+  width: 142px;
+  height: 32px;
+  border: 1px solid var(--cutout-ink);
+  border-radius: 11px 4px 11px 4px;
+  color: var(--cutout-ink);
+  background: var(--cutout-paper);
+  font-size: .67rem;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .usuario-controles,
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-controles {
+  border-color: var(--cutout-ink);
+  background: var(--cutout-paper);
+  box-shadow: 4px 4px 0 rgb(0 0 0 / 30%);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .usuario-controles .selector-estilo select,
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-controles .selector-estilo select {
+  border-color: var(--cutout-ink);
+  color: var(--cutout-ink);
+  background: var(--cutout-cream);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .usuario,
+:root[data-tema='oscuro'][data-estilo='android'] .menu-configuracion,
+:root[data-tema='oscuro'][data-estilo='android'] .menu-perfil {
+  border-color: #648365;
+  background: #26382c;
+  box-shadow: 5px 5px 0 #122017;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .usuario-email,
+:root[data-tema='oscuro'][data-estilo='android'] .menu-configuracion-titulo,
+:root[data-tema='oscuro'][data-estilo='android'] .menu-perfil strong,
+:root[data-tema='oscuro'][data-estilo='android'] .menu-perfil .avatar-zoom {
+  color: var(--cutout-ink);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .menu-configuracion .boton-tema {
+  border: 0;
+  outline: 0;
+  color: var(--cutout-ink);
+  background: #e8c978;
+  box-shadow: 4px 4px 0 #416744;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .menu-configuracion .boton-tema:hover {
+  color: var(--cutout-ink);
+  background: #d3b45e;
+  box-shadow: 5px 5px 0 #416744;
+}
+
+:root[data-estilo='android'] .boton-primario,
+:root[data-estilo='android'] .boton-secundario,
+:root[data-estilo='android'] .boton-eliminar,
+:root[data-estilo='android'] .limpiar-filtros,
+:root[data-estilo='android'] .boton-salir {
+  border-radius: 13px 4px 13px 4px;
+  font-weight: 800;
+  transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+
+:root[data-estilo='android'] .boton-primario {
+  border: 2px solid var(--cutout-ink);
+  color: #f8fff2;
+  background: var(--cutout-green);
+  box-shadow: 4px 4px 0 var(--cutout-gold);
+}
+
+:root[data-estilo='android'] .boton-secundario,
+:root[data-estilo='android'] .limpiar-filtros {
+  border: 2px solid var(--cutout-ink);
+  color: var(--cutout-ink);
+  background: var(--cutout-gold-light);
+  box-shadow: 4px 4px 0 var(--cutout-green);
+}
+
+:root[data-estilo='android'] .boton-eliminar {
+  border: 2px solid #9a4f4f;
+  color: #8b3535;
+  background: #f2caca;
+  box-shadow: 4px 4px 0 #c07878;
+}
+
+:root[data-estilo='android'] .boton-primario:hover:not(:disabled),
+:root[data-estilo='android'] .boton-secundario:hover:not(:disabled),
+:root[data-estilo='android'] .boton-eliminar:hover:not(:disabled),
+:root[data-estilo='android'] .limpiar-filtros:hover,
+:root[data-estilo='android'] .boton-salir:hover {
+  transform: translate(-1px, -1px);
+  filter: none;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .boton-primario {
+  border-color: #9dbc95;
+  color: #16231a;
+  background: #719d6c;
+  box-shadow: 4px 4px 0 #b49a52;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .boton-secundario,
+:root[data-tema='oscuro'][data-estilo='android'] .limpiar-filtros {
+  border-color: #bca45d;
+  color: #f2dda0;
+  background: #4a4129;
+  box-shadow: 4px 4px 0 #608a61;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .boton-eliminar {
+  border-color: #c98585;
+  color: #ffd5d5;
+  background: #503333;
+  box-shadow: 4px 4px 0 #8e5a5a;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .boton-salir {
+  border: 2px solid #9dbc95;
+  color: #eaf5e5;
+  background: #376345;
+  box-shadow: 4px 4px 0 #63552e;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .usuario-avatar,
+:root[data-tema='oscuro'][data-estilo='android'] .avatar-recorte {
+  border-color: #648365;
+  background: var(--cutout-green-light);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .usuario-controles,
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-controles {
+  border-color: #526c55;
+  background: #223228;
+  box-shadow: 3px 3px 0 #152219;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .usuario-controles .selector-estilo select,
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-controles .selector-estilo select {
+  border-color: #668368;
+  color: #d7e5d2;
+  background: #1d2c22;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] option {
+  color: var(--cutout-ink);
+  background: var(--cutout-paper);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] option:checked {
+  color: #17251a;
+  background: var(--cutout-gold);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] option:hover {
+  color: var(--cutout-ink);
+  background: var(--cutout-green-light);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .bienvenida,
+:root[data-tema='oscuro'][data-estilo='android'] .fecha-hoy,
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-panel,
+:root[data-tema='oscuro'][data-estilo='android'] .resumen-card,
+:root[data-tema='oscuro'][data-estilo='android'] .seccion,
+:root[data-tema='oscuro'][data-estilo='android'] .meta,
+:root[data-tema='oscuro'][data-estilo='android'] .prestamo,
+:root[data-tema='oscuro'][data-estilo='android'] .presupuesto-item,
+:root[data-tema='oscuro'][data-estilo='android'] .recurrente-item,
+:root[data-tema='oscuro'][data-estilo='android'] .estado-vacio,
+:root[data-tema='oscuro'][data-estilo='android'] .usuario,
+:root[data-tema='oscuro'][data-estilo='android'] .menu-configuracion,
+:root[data-tema='oscuro'][data-estilo='android'] .menu-perfil {
+  box-shadow: 3px 3px 0 #17251c;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .formulario-meta,
+:root[data-tema='oscuro'][data-estilo='android'] .formulario-prestamo,
+:root[data-tema='oscuro'][data-estilo='android'] .formulario-extra,
+:root[data-tema='oscuro'][data-estilo='android'] .filtros-historial,
+:root[data-tema='oscuro'][data-estilo='android'] .abono-anticipado {
+  border-color: #58785b;
+  background: #263b2c;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .boton-primario,
+:root[data-tema='oscuro'][data-estilo='android'] .boton-secundario,
+:root[data-tema='oscuro'][data-estilo='android'] .boton-eliminar,
+:root[data-tema='oscuro'][data-estilo='android'] .limpiar-filtros,
+:root[data-tema='oscuro'][data-estilo='android'] .boton-salir {
+  box-shadow: 3px 3px 0 rgb(12 27 17 / 55%);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-panel {
+  border-color: #526c55;
+  background: #223228;
+  box-shadow: 3px 3px 0 #17251c;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-item {
+  color: #b7c8b4;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-item:hover {
+  color: #c4dcb9;
+  background: rgb(143 189 136 / 12%);
+  box-shadow: inset 0 0 0 1px #6f936c;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-item:hover > span:first-child,
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-item > span:first-child {
+  color: #9fbd96;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .navegacion-indicador {
+  background: #bda65d;
+  box-shadow: 3px 3px 0 #527052;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .boton-configuracion {
+  border-color: #607d62;
+  color: #c2d6ba;
+  background: #2b4030;
+  box-shadow: 3px 3px 0 #17251c;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .boton-configuracion:hover {
+  border-color: #8eaa81;
+  color: #e2eedc;
+  background: #36513a;
+  box-shadow: 4px 4px 0 #17251c;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .marca-icono {
+  border-color: #9dbc95;
+  color: #17251a;
+  background: #bda65d;
+  box-shadow: 4px 4px 0 #527052;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .marca-logo {
+  color: #a9c99d;
+  filter: drop-shadow(3px 3px 0 rgb(83 112 82 / 55%));
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .marca-nombre {
+  color: #e3eedb;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .marca-nombre strong {
+  color: #d3b86a;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .marca:hover .marca-icono {
+  box-shadow: 5px 5px 0 #527052;
+}
+
+@keyframes cutout-background-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-18deg); }
+  50% { transform: translate3d(12px, -8px, 0) rotate(-13deg); }
+}
+
+@keyframes cutout-ring-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(-10px, 9px, 0) rotate(7deg); }
+}
+
+@keyframes cutout-rise {
+  from { opacity: 0; transform: translateY(16px) rotate(1deg); }
+  to { opacity: 1; transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes cutout-pop {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(-1deg); }
+}
+
+@keyframes cutout-shine {
+  0%, 100% { opacity: .7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+@keyframes cutout-logo-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  45% { transform: rotate(-3deg) translateY(-2px); }
+  70% { transform: rotate(2deg) translateY(0); }
+}
+
+@keyframes cutout-user-settle {
+  from { opacity: 0; transform: translateX(12px) rotate(1deg); }
+  to { opacity: 1; transform: translateX(0) rotate(0deg); }
+}
+
+@keyframes cutout-menu-open {
+  from { opacity: 0; transform: translateY(-8px) scale(.96) rotate(1deg); }
+  to { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+}
+
+@keyframes cutout-menu-close {
+  from { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+  to { opacity: 0; transform: translateY(-6px) scale(.96) rotate(-1deg); }
+}
+
+@keyframes cutout-control-hover {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  45% { transform: translate(-2px, -2px) rotate(-5deg); }
+  100% { transform: translate(-1px, -1px) rotate(3deg); }
+}
+
+@keyframes cutout-calendar-next {
+  from { opacity: 0; transform: translate3d(24px, 0, 0) rotate(1deg); }
+  to { opacity: 1; transform: translateX(0) rotate(0deg); }
+}
+
+@keyframes cutout-calendar-previous {
+  from { opacity: 0; transform: translate3d(-24px, 0, 0) rotate(-1deg); }
+  to { opacity: 1; transform: translateX(0) rotate(0deg); }
+}
+
+:root[data-estilo='android'] body::before {
+  animation: cutout-ring-drift 9s ease-in-out infinite;
+}
+
+:root[data-estilo='android'] body::after {
+  animation: cutout-background-drift 7s ease-in-out infinite;
+}
+
+:root[data-estilo='android'] .app-header {
+  animation: cutout-rise .55s cubic-bezier(.2, .8, .2, 1) both;
+  position: relative;
+  z-index: 20;
+}
+
+:root[data-estilo='android'] .marca-logo {
+  animation: cutout-logo-wiggle 5.5s 1s ease-in-out infinite;
+}
+
+:root[data-estilo='android'] .usuario {
+  z-index: 21;
+  animation: cutout-user-settle .55s .18s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+:root[data-estilo='android'] .usuario-avatar {
+  animation: none;
+}
+
+:root[data-estilo='android'] .usuario-avatar:hover {
+  animation: cutout-control-hover .35s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+:root[data-estilo='android'] .boton-configuracion {
+  animation: none;
+}
+
+:root[data-estilo='android'] .boton-configuracion > span {
+  display: inline-block;
+  transition: transform .3s cubic-bezier(.2, .8, .2, 1);
+}
+
+:root[data-estilo='android'] .boton-configuracion:hover {
+  animation: cutout-control-hover .35s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+:root[data-estilo='android'] .boton-configuracion:hover > span,
+:root[data-estilo='android'] .boton-configuracion[aria-expanded='true'] > span {
+  transform: rotate(75deg) scale(1.1);
+}
+
+:root[data-estilo='android'] .menu-configuracion,
+:root[data-estilo='android'] .menu-perfil {
+  z-index: 30;
+  transform-origin: top right;
+  animation: cutout-menu-open .24s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+:root[data-estilo='android'] .menu-configuracion.menu-cerrando,
+:root[data-estilo='android'] .menu-perfil.menu-cerrando {
+  animation: cutout-menu-close .22s cubic-bezier(.4, 0, 1, 1) both;
+  pointer-events: none;
+}
+
+:root[data-estilo='android'] .bienvenida {
+  animation: cutout-rise .6s .08s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+:root[data-estilo='android'] .navegacion-panel {
+  animation: cutout-rise .55s .16s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+:root[data-estilo='android'] .resumen-card,
+:root[data-estilo='android'] .seccion {
+  animation: cutout-rise .55s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+:root[data-estilo='android'] .resumen-card:nth-child(2),
+:root[data-estilo='android'] .seccion:nth-of-type(2) {
+  animation-delay: .08s;
+}
+
+:root[data-estilo='android'] .resumen-card:nth-child(3),
+:root[data-estilo='android'] .seccion:nth-of-type(3) {
+  animation-delay: .14s;
+}
+
+:root[data-estilo='android'] .resumen-card:nth-child(4),
+:root[data-estilo='android'] .seccion:nth-of-type(4) {
+  animation-delay: .2s;
+}
+
+:root[data-estilo='android'] .meta,
+:root[data-estilo='android'] .prestamo,
+:root[data-estilo='android'] .presupuesto-item,
+:root[data-estilo='android'] .recurrente-item {
+  animation: cutout-rise .45s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+:root[data-estilo='android'] .meta:nth-child(even),
+:root[data-estilo='android'] .prestamo:nth-child(even),
+:root[data-estilo='android'] .presupuesto-item:nth-child(even),
+:root[data-estilo='android'] .recurrente-item:nth-child(even) {
+  animation-delay: .08s;
+}
+
+:root[data-estilo='android'] .resumen-icono,
+:root[data-estilo='android'] .meta-icono,
+:root[data-estilo='android'] .prestamo-avatar {
+  animation: cutout-pop 3.8s ease-in-out infinite;
+}
+
+:root[data-estilo='android'] .punto-activo {
+  animation: cutout-shine 2.2s ease-in-out infinite;
+}
+
+:root[data-estilo='android'] .calendario-grid.calendario-cambio-siguiente {
+  animation: cutout-calendar-next .55s cubic-bezier(.22, .75, .2, 1) both;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+:root[data-estilo='android'] .calendario-grid.calendario-cambio-anterior {
+  animation: cutout-calendar-previous .55s cubic-bezier(.22, .75, .2, 1) both;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+:root[data-estilo='android'] .calendario-cabecera .boton-secundario {
+  position: relative;
+  z-index: 1;
+  box-shadow: 4px 4px 0 var(--cutout-green);
+  transition: transform .24s cubic-bezier(.2, .8, .2, 1), background .2s ease, border-color .2s ease;
+  will-change: transform;
+}
+
+:root[data-estilo='android'] .calendario-cabecera .boton-secundario:hover:not(:disabled) {
+  box-shadow: 4px 4px 0 var(--cutout-green);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .calendario-cabecera .boton-secundario {
+  box-shadow: 3px 3px 0 #527052;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .calendario-cabecera .boton-secundario:hover:not(:disabled) {
+  box-shadow: 3px 3px 0 #527052;
+}
+
+:root[data-estilo='android'] .boton-primario:hover:not(:disabled),
+:root[data-estilo='android'] .boton-secundario:hover:not(:disabled),
+:root[data-estilo='android'] .boton-configuracion:hover,
+:root[data-estilo='android'] .boton-tema:hover {
+  transform: translate(-2px, -2px) rotate(-1deg);
+}
+
+@media (max-width: 760px) {
+  :root[data-estilo='android'] .app-header {
+    align-items: flex-start;
+  }
+
+  :root[data-estilo='android'] .usuario {
+    align-items: flex-end;
+    max-width: min(100%, 520px);
+  }
+
+  :root[data-estilo='android'] .usuario-controles {
+    max-width: min(66vw, 290px);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  :root[data-estilo='android'] .usuario-controles .selector-estilo {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  :root[data-estilo='android'] .usuario-controles .selector-estilo select {
+    flex: 1;
+    width: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-estilo='android'] body::before,
+  :root[data-estilo='android'] body::after,
+  :root[data-estilo='android'] .app-header,
+  :root[data-estilo='android'] .marca-logo,
+  :root[data-estilo='android'] .usuario,
+  :root[data-estilo='android'] .usuario-avatar,
+  :root[data-estilo='android'] .boton-configuracion,
+  :root[data-estilo='android'] .menu-configuracion,
+  :root[data-estilo='android'] .menu-perfil,
+  :root[data-estilo='android'] .bienvenida,
+  :root[data-estilo='android'] .navegacion-panel,
+  :root[data-estilo='android'] .resumen-card,
+  :root[data-estilo='android'] .seccion,
+  :root[data-estilo='android'] .meta,
+  :root[data-estilo='android'] .prestamo,
+  :root[data-estilo='android'] .presupuesto-item,
+  :root[data-estilo='android'] .recurrente-item,
+  :root[data-estilo='android'] .resumen-icono,
+  :root[data-estilo='android'] .meta-icono,
+  :root[data-estilo='android'] .prestamo-avatar,
+  :root[data-estilo='android'] .punto-activo {
+    animation: none;
+  }
+
+  :root[data-estilo='android'] .calendario-grid.calendario-cambio-siguiente,
+  :root[data-estilo='android'] .calendario-grid.calendario-cambio-anterior {
+    animation: none;
+  }
+
+  :root[data-estilo='android'] .usuario-avatar:hover {
+    animation: none;
+  }
+
+  :root[data-estilo='android'] .boton-configuracion > span {
+    transition: none;
+  }
+
+  :root[data-estilo='android'] .boton-configuracion:hover {
+    animation: none;
+  }
+}
+
+@media (max-width: 520px) {
+  :root[data-estilo='android'] .usuario-controles {
+    max-width: 210px;
+  }
+
+  :root[data-estilo='android'] .usuario-controles .selector-estilo {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+    padding: 0 2px;
+  }
+
+  :root[data-estilo='android'] .usuario-controles .selector-estilo select {
+    width: 100%;
+  }
+
+  :root[data-estilo='android'] .acceso-controles {
+    top: 16px;
+    right: 62px;
+  }
+}
+
+:root[data-estilo='android'] .acceso-controles {
+  top: 22px;
+  right: 72px;
+  left: auto;
+  width: 148px;
+  height: 38px;
+  padding: 0;
+  border: 2px solid var(--cutout-ink);
+  border-radius: 13px 4px 13px 4px;
+  background: var(--cutout-paper);
+  box-shadow: 3px 3px 0 var(--cutout-gold-light);
+  box-sizing: border-box;
+}
+
+:root[data-estilo='android'] .acceso-controles .selector-estilo {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+}
+
+:root[data-estilo='android'] .acceso-controles .selector-personalizado-boton,
+:root[data-estilo='android'] .acceso-tema {
+  height: 38px;
+  min-height: 38px;
+  border: 2px solid var(--cutout-ink);
+  border-radius: 13px 4px 13px 4px;
+  color: var(--cutout-ink);
+  background: var(--cutout-paper);
+  box-shadow: 3px 3px 0 var(--cutout-gold-light);
+  box-sizing: border-box;
+}
+
+:root[data-estilo='android'] .acceso-controles .selector-personalizado-boton {
+  width: 100%;
+  font-size: .67rem;
+}
+
+:root[data-estilo='android'] .acceso-tema {
+  top: 22px;
+  right: 22px;
+  width: 38px;
+}
+
+:root[data-estilo='android'] .acceso-controles .selector-personalizado-boton:hover,
+:root[data-estilo='android'] .acceso-tema:hover {
+  border-color: var(--cutout-gold);
+  background: var(--cutout-cream);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-controles,
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-controles .selector-personalizado-boton,
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-tema {
+  border-color: #526c55;
+  color: #d7e5d2;
+  background: #223228;
+  box-shadow: 3px 3px 0 #152219;
+}
+
+@media (max-width: 520px) {
+  :root[data-estilo='android'] .acceso-controles {
+    top: 16px;
+    right: 62px;
+  }
+
+  :root[data-estilo='android'] .acceso-tema {
+    top: 16px;
+    right: 16px;
+  }
+}
+
+:root[data-estilo='android'] .marca-acceso .marca-contenido {
+  gap: 18px;
+}
+
+:root[data-estilo='android'] .marca-acceso .marca-logo {
+  width: 78px;
+  height: 66px;
+  color: #e8f4df;
+  filter: drop-shadow(4px 4px 0 rgb(31 66 40 / 42%));
+}
+
+:root[data-estilo='android'] .marca-acceso .marca-nombre {
+  color: #fff;
+  font-size: 1.45rem;
+  font-weight: 900;
+  letter-spacing: .13em;
+  text-shadow: 2px 2px 0 rgb(31 66 40 / 35%);
+}
+
+:root[data-estilo='android'] .marca-acceso .marca-nombre strong {
+  color: #f0ca68;
+}
+
+:root[data-estilo='android'] .acceso-movil-marca .marca-contenido {
+  gap: 12px;
+}
+
+:root[data-estilo='android'] .acceso-movil-marca .marca-logo {
+  width: 56px;
+  height: 48px;
+}
+
+:root[data-estilo='android'] .acceso-movil-marca .marca-nombre {
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .pantalla-acceso {
+  border-color: #45554a;
+  background: #18221c;
+  box-shadow: 10px 10px 0 #0c120e;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-presentacion {
+  background:
+    radial-gradient(circle at 85% 12%, rgb(232 201 120 / 15%) 0 4rem, transparent 4.1rem),
+    linear-gradient(145deg, #1d3024, #263d2c 62%, #304636);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-formulario {
+  background: #18221c;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-formulario h2,
+:root[data-tema='oscuro'][data-estilo='android'] .form-acceso label {
+  color: #edf4e9;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-descripcion,
+:root[data-tema='oscuro'][data-estilo='android'] .cambio-modo {
+  color: #adbcaf;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .form-acceso input {
+  border-color: #53665a;
+  color: #edf4e9;
+  background: #222e26;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .form-acceso input:focus {
+  border-color: #a9c99e;
+  background: #28372c;
+  box-shadow: 0 0 0 3px rgb(169 201 158 / 18%);
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .form-acceso input::placeholder {
+  color: #819287;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .ver-clave {
+  color: #e8c978;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .ver-clave:hover,
+:root[data-tema='oscuro'][data-estilo='android'] .cambio-modo .enlace {
+  color: #f0d992;
+}
+
+:root[data-tema='oscuro'][data-estilo='android'] .acceso-seguro {
+  color: #89998e;
+}
