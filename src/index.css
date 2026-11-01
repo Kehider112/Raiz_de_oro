@@ -336,6 +336,12 @@ td:first-child { min-width: 180px; }
 .ver-clave:hover { color: #244734; }
 .boton-acceso { width: 100%; min-height: 48px; margin-top: 2px; }
 .boton-acceso span { float: right; font-size: 1.05rem; }
+.separador-acceso { display: flex; align-items: center; gap: 12px; margin: 22px 0 16px; color: var(--suave); font-size: .73rem; }
+.separador-acceso::before,
+.separador-acceso::after { height: 1px; flex: 1; background: var(--borde); content: ""; }
+.boton-google { display: flex; width: 100%; min-height: 48px; align-items: center; justify-content: center; gap: 10px; padding: 0 14px; border: 1px solid var(--borde); border-radius: 10px; color: var(--texto); background: var(--tarjeta); font-size: .84rem; font-weight: 700; transition: border-color .2s, background .2s, transform .2s; }
+.boton-google:hover:not(:disabled) { transform: translateY(-1px); border-color: #b9c9b5; background: var(--verde-claro); }
+.google-icon { display: block; width: 21px; height: 21px; object-fit: contain; }
 .mensaje-acceso { margin: 0; font-size: .8rem; line-height: 1.5; }
 .mensaje-exito { margin: 0; padding: 11px 12px; border: 1px solid var(--verde-borde); border-radius: 9px; color: var(--verde); background: var(--verde-claro); font-size: .79rem; line-height: 1.5; }
 .cambio-modo { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; margin-top: 23px; color: var(--suave); font-size: .8rem; }
